@@ -18,7 +18,7 @@ export function HomePage() {
   return (
     <>
       <Hero
-        eyebrow="بيانات تجريبية — للمعاينة فقط"
+        eyebrow="الفصل الأول متاح الآن"
         title="كتاب الطبيعيات التفاعلي"
         subtitle="مساحة تعلّم واحدة تجمع القراءة والفيديو والتمارين التفاعلية والمساعد الذكي، بتصميم مريح للقراءة الطويلة."
         primaryAction={{ label: "استعرض الفصول", onClick: () => navigate("/chapter/c1") }}
@@ -42,9 +42,9 @@ export function HomePage() {
                 <div className={styles.continueTopRow}>
                   <div className={styles.continueMeta}>
                     <span className={styles.continueChapterLabel}>{chapters[0].title}</span>
-                    <h3 className={styles.continueLessonTitle}>{chapters[0].lessons[2].title}</h3>
+                    <h3 className={styles.continueLessonTitle}>{chapters[0].lessons[0].title}</h3>
                   </div>
-                  <Button onClick={() => navigate(`/lesson/${chapters[0].lessons[2].id}`)}>متابعة</Button>
+                  <Button onClick={() => navigate(`/lesson/${chapters[0].lessons[0].id}`)}>متابعة</Button>
                 </div>
                 <div className={styles.continueProgressRow}>
                   <div className={styles.continueProgressBar}>
@@ -73,7 +73,7 @@ export function HomePage() {
         <section className={styles.section} id="chapters">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>الفصول</h2>
-            <span className={styles.sectionCaption}>بيانات تجريبية — سيتم استبدالها بالمحتوى الفعلي لاحقًا</span>
+            <span className={styles.sectionCaption}>الدرس الأول من الفصل الأول جاهز؛ باقي الدروس قيد الإعداد</span>
           </div>
           <div className="auto-grid">
             {chapters.map((chapter, i) => (

@@ -143,6 +143,21 @@ export interface DiagramBlockData extends BaseBlock {
   viewBox?: string;
 }
 
+/**
+ * A hand-built physics diagram that outdoes what the declarative
+ * DiagramShape primitives can express (labeled vectors, arrowheads,
+ * multi-panel layouts). `diagramId` is looked up against a small
+ * registry of one-off React components in
+ * src/components/diagrams/registry.tsx — content stays pure data,
+ * the bespoke rendering lives entirely in the presentation layer.
+ */
+export interface CustomDiagramBlockData extends BaseBlock {
+  type: "customDiagram";
+  title: string;
+  diagramId: string;
+  caption?: string;
+}
+
 export interface ImageBlockData extends BaseBlock {
   type: "image";
   src?: string;
@@ -227,6 +242,7 @@ export type ContentBlock =
   | TrueFalseBlockData
   | FillBlankBlockData
   | DiagramBlockData
+  | CustomDiagramBlockData
   | ImageBlockData
   | VideoBlockData
   | AnimationBlockData

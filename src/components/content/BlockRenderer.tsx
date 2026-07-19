@@ -26,6 +26,7 @@ import { VideoCard } from "../cards/VideoCard";
 import { QuestionCard } from "../cards/QuestionCard";
 import { AIAssistantCard } from "../cards/AIAssistantCard";
 import { InteractiveDiagramContainer } from "../math/InteractiveDiagramContainer";
+import { customDiagramRegistry } from "../diagrams/registry";
 
 /** Block types that get a running "Exercise/Question N" number within their list. */
 const ACTIVITY_TYPES = new Set(["exercise", "mcq", "trueFalse", "fillBlank"]);
@@ -133,6 +134,18 @@ export function ContentBlockRenderer({ block, activityNumber }: ContentBlockRend
           </svg>
         </InteractiveDiagramContainer>
       );
+
+    case "customDiagram": {
+      const Diagram = customDiagramRegistry[block.diagramId];
+      return (
+        <div className="stack">
+          <InteractiveDiagramContainer title={block.title}>
+            {Diagram ? <Diagram /> : null}
+          </InteractiveDiagramContainer>
+          {block.caption && <p className="text-caption" style={{ textAlign: "center" }}>{block.caption}</p>}
+        </div>
+      );
+    }
 
     case "image":
       return <ImageCard src={block.src} alt={block.alt} caption={block.caption} />;

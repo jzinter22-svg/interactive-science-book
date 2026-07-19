@@ -12,9 +12,9 @@
 // ============================================================
 
 import type { Chapter, Lesson } from "./types";
-import { sampleChapters } from "./sample/sampleChapters";
+import { chapter1 } from "./chapters/c1";
 
-const chapters: Chapter[] = sampleChapters;
+const chapters: Chapter[] = [chapter1];
 
 export function getAllChapters(): Chapter[] {
   return chapters;

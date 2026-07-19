@@ -1,12 +1,15 @@
-# كتاب الطبيعيات التفاعلي — Interactive Physics Book (Platform Foundation)
+# كتاب الطبيعيات التفاعلي — Interactive Physics Book
 
-This repository currently contains the platform foundation and a complete
-**content engine** — the design system, component library, and data-driven
-rendering architecture for a premium, RTL-first Arabic physics learning
-platform. No real chapter content or PDF has been imported yet; that is
-intentional and awaiting approval before that work begins. Everything a
-future chapter will need to render already exists and has been verified
-against a full sample lesson exercising every content type.
+This repository contains the platform foundation, a complete **content
+engine**, and the **Golden Lesson**: Chapter One's first lesson, "الحركة
+الدائرية والقوة المركزية" (Circular Motion and Centripetal Force),
+transcribed verbatim from the source textbook (`books/كتاب الطبيعيات.pdf`)
+and built as the permanent reference implementation every future lesson
+must match in structure, interactivity, and visual quality.
+
+Only this one lesson is imported so far, by design — the rest of Chapter
+One (satellite orbits, Kepler's laws, rotational motion, angular momentum)
+is intentionally not yet written.
 
 ## Stack
 
@@ -28,8 +31,10 @@ src/content/
                         // ContentBlock union — one interface per block type
   registry.ts           // the ONLY thing pages talk to: getAllChapters,
                         // getChapterById, getLessonById, getSidebarNavSections
-  sample/
-    sampleChapters.ts    // placeholder data — NOT Chapter One
+  chapters/
+    c1.ts                // REAL content — Chapter One, Lesson One (the
+                         // Golden Lesson), transcribed verbatim from the
+                         // source PDF
 
 src/components/content/
   BlockRenderer.tsx      // ContentBlockList / ContentBlockRenderer — the
@@ -45,6 +50,15 @@ src/components/content/
                          // Concept, StepSolution, TrueFalse, FillBlank,
                          // Animation, Simulation, Hint, TeacherTip,
                          // Summary, Glossary, References, Section)
+
+src/components/diagrams/
+  Figure1_1.tsx, Figure1_2.tsx,
+  Figure1_3.tsx           // bespoke labeled-vector SVG diagrams — the
+                          // escape hatch for physics illustrations too
+                          // specific for the declarative DiagramShape
+                          // primitives. Looked up by diagramId through
+                          // registry.tsx from a `customDiagram` block —
+                          // content still stays pure data.
 ```
 
 ### Supported content block types
@@ -55,9 +69,9 @@ can be flat or organized into titled sections, to any depth.
 
 Definition · Concept · Formula · Example · Step-by-step Solution ·
 Exercise · Multiple-choice Question · True/False Question · Fill in the
-Blank · Interactive Diagram · Image · Video · Animation · Simulation ·
-Hint · Note · Warning · Teacher Tip · AI Tutor · Summary · Glossary ·
-References · Section
+Blank · Interactive Diagram · Custom (bespoke) Diagram · Image · Video ·
+Animation · Simulation · Hint · Note · Warning · Teacher Tip · AI Tutor ·
+Summary · Glossary · References · Section
 
 Exercises and questions (exercise/mcq/trueFalse/fillBlank) get an
 automatic running number scoped to the list they appear in — a flat
@@ -120,12 +134,45 @@ npm install
 npm run dev
 ```
 
+## The Golden Lesson
+
+`c1-l1` — "الحركة الدائرية والقوة المركزية" — is the first real content
+import and the permanent reference implementation for the rest of the
+book. It covers sections ١-١ through ١-٣ of Chapter One (تمهيد, الحركة
+الدائرية including التعجيل المركزي ومحصلة التعجيل, and القوة المركزية),
+transcribed verbatim from `books/كتاب الطبيعيات.pdf`.
+
+What it demonstrates end to end:
+
+- Every definition, law/formula, worked example, and exercise from the
+  source as its own card, in the source's own order.
+- Multi-part "علّل" (explain-why) exercises as independent Exercise cards
+  with the explanation hidden behind "إظهار الحل" until requested.
+- Three bespoke, labeled, zoomable SVG physics diagrams (centripetal
+  acceleration, resultant acceleration, centripetal force) built as a
+  `customDiagram` block — see `src/components/diagrams/`.
+- Real cropped textbook figures (`public/lesson-assets/`) for the solar
+  system, a lab centrifuge, a car cornering, and a banked road.
+- A Hint, a Warning, a Teacher Tip (flagging a genuine labeling
+  inconsistency in the source's own worked example, verbatim), two "هل
+  تعلم؟" Notes, an end-of-lesson quiz (4 MCQs, scoped numbering via a
+  Section), a Summary, a Glossary, References, and an AI Tutor prompt.
+- Every core physics fact traces back to the source PDF; nothing was
+  invented. Supplementary text (the summary, glossary phrasing, quiz
+  explanations, and the two derived "علّل" solutions not spelled out
+  verbatim in the source) is built only from formulas and concepts the
+  same pages already teach.
+
+Every future lesson should match this one in structure, card usage,
+diagram quality, and interactivity before being considered done.
+
 ## Status
 
-Foundation and content engine complete: tokens, theme engine, layout
-primitives, the full component library, and a data-driven rendering
-pipeline for every requested content block type are built and verified —
-including a lesson that exercises all 22 block types together, an
-unauthored lesson showing the empty state, dark mode, and RTL long-text
-stress testing. Next step (pending approval): importing real physics
-chapter content (Chapter One).
+Foundation, content engine, and the Golden Lesson are complete and
+verified: tokens, theme engine, layout primitives, the full component
+library, a data-driven rendering pipeline for every content block type,
+and one fully real, richly interactive physics lesson — checked at
+desktop/tablet/mobile widths, in light and dark mode, for RTL
+correctness, overflow, and working interactivity (show-solution, quiz
+answers, diagram zoom). Next step: Lesson Two, matching this lesson's
+bar for quality.
