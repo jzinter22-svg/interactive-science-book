@@ -6,6 +6,7 @@ import { SectionBlock } from "./SectionBlock";
 import { DefinitionBlock } from "./DefinitionBlock";
 import { ConceptBlock } from "./ConceptBlock";
 import { StepSolutionBlock } from "./StepSolutionBlock";
+import { GuidedSolutionBlock } from "./GuidedSolutionBlock";
 import { TrueFalseBlock } from "./TrueFalseBlock";
 import { FillBlankBlock } from "./FillBlankBlock";
 import { AnimationBlock } from "./AnimationBlock";
@@ -27,6 +28,7 @@ import { QuestionCard } from "../cards/QuestionCard";
 import { AIAssistantCard } from "../cards/AIAssistantCard";
 import { InteractiveDiagramContainer } from "../math/InteractiveDiagramContainer";
 import { customDiagramRegistry } from "../diagrams/registry";
+import { simulationRegistry } from "../simulations/registry";
 
 /** Block types that get a running "Exercise/Question N" number within their list. */
 const ACTIVITY_TYPES = new Set(["exercise", "mcq", "trueFalse", "fillBlank"]);
@@ -92,6 +94,21 @@ export function ContentBlockRenderer({ block, activityNumber }: ContentBlockRend
     case "stepSolution":
       return <StepSolutionBlock steps={block.steps} finalAnswer={block.finalAnswer} />;
 
+    case "guidedSolution":
+      return (
+        <GuidedSolutionBlock
+          title={block.title}
+          restatement={block.restatement}
+          givens={block.givens}
+          required={block.required}
+          equation={block.equation}
+          conversions={block.conversions}
+          steps={block.steps}
+          finalAnswer={block.finalAnswer}
+          commonMistake={block.commonMistake}
+        />
+      );
+
     case "exercise":
       return <ExerciseBlockRenderer block={block} number={activityNumber ?? 1} />;
 
@@ -142,6 +159,16 @@ export function ContentBlockRenderer({ block, activityNumber }: ContentBlockRend
           <InteractiveDiagramContainer title={block.title}>
             {Diagram ? <Diagram /> : null}
           </InteractiveDiagramContainer>
+          {block.caption && <p className="text-caption" style={{ textAlign: "center" }}>{block.caption}</p>}
+        </div>
+      );
+    }
+
+    case "interactiveSim": {
+      const Sim = simulationRegistry[block.simId];
+      return (
+        <div className="stack">
+          {Sim ? <Sim /> : null}
           {block.caption && <p className="text-caption" style={{ textAlign: "center" }}>{block.caption}</p>}
         </div>
       );

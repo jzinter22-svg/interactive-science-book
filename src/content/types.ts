@@ -59,6 +59,17 @@ export interface StepSolutionData {
   finalAnswer?: string;
 }
 
+export interface GivenQuantity {
+  label: string;
+  value: string;
+}
+
+export interface UnitConversionStep {
+  /** Why this conversion is needed, stated before it happens — e.g. "بما أن القانون يتطلب وحدات النظام الدولي، نحوّل الكيلومترات إلى أمتار أولاً." */
+  explanation: string;
+  result: string;
+}
+
 // ------------------------------------------------------------
 // Content blocks — one interface per reusable content type.
 // Every block carries `id` (stable React key + future deep-linking)
@@ -102,6 +113,28 @@ export interface ExampleBlockData extends BaseBlock {
 
 export interface StepSolutionBlockData extends BaseBlock, StepSolutionData {
   type: "stepSolution";
+}
+
+/**
+ * A worked example rebuilt for a student with no prior knowledge: never
+ * jump straight to calculation. Restate the problem, list every given
+ * quantity separately, name what's required, explain *why* the chosen
+ * equation applies, explain every unit conversion before performing it,
+ * show one operation per line, highlight the final answer, and flag the
+ * most common mistake.
+ */
+export interface GuidedSolutionBlockData extends BaseBlock {
+  type: "guidedSolution";
+  title: string;
+  restatement: string;
+  givens: GivenQuantity[];
+  required: string;
+  equation: { latex: string; reasoning: string };
+  conversions?: UnitConversionStep[];
+  /** One arithmetic operation per entry. */
+  steps: string[];
+  finalAnswer: string;
+  commonMistake: string;
 }
 
 export interface ExerciseBlockData extends BaseBlock {
@@ -155,6 +188,20 @@ export interface CustomDiagramBlockData extends BaseBlock {
   type: "customDiagram";
   title: string;
   diagramId: string;
+  caption?: string;
+}
+
+/**
+ * A fully interactive physics simulation (drag, sliders, live vectors,
+ * play/pause/reset) — the presentation-layer counterpart to
+ * `customDiagram`, but for things that move. `simId` is looked up
+ * against a small registry of components in
+ * src/components/simulations/registry.ts.
+ */
+export interface InteractiveSimBlockData extends BaseBlock {
+  type: "interactiveSim";
+  title: string;
+  simId: string;
   caption?: string;
 }
 
@@ -237,12 +284,14 @@ export type ContentBlock =
   | FormulaBlockData
   | ExampleBlockData
   | StepSolutionBlockData
+  | GuidedSolutionBlockData
   | ExerciseBlockData
   | MCQBlockData
   | TrueFalseBlockData
   | FillBlankBlockData
   | DiagramBlockData
   | CustomDiagramBlockData
+  | InteractiveSimBlockData
   | ImageBlockData
   | VideoBlockData
   | AnimationBlockData
