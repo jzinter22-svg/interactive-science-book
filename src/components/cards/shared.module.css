@@ -1,0 +1,79 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: transform var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.cardHover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  width: fit-content;
+}
+
+.badgeIndigo {
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+}
+
+.badgeAmber {
+  background: var(--accent-secondary-soft);
+  color: var(--accent-secondary);
+}
+
+.badgeTeal {
+  background: var(--accent-tertiary-soft);
+  color: var(--accent-tertiary);
+}
+
+.badgeSuccess {
+  background: var(--status-success-soft);
+  color: var(--status-success);
+}
+
+.badgeDanger {
+  background: var(--status-danger-soft);
+  color: var(--status-danger);
+}
+
+.title {
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  line-height: var(--lh-snug);
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.footerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: var(--space-2);
+}

@@ -1,0 +1,114 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-block-size: 32rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-amber-300), var(--color-indigo-400));
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow-y: auto;
+  flex: 1;
+  min-block-size: 6rem;
+}
+
+.messageRow {
+  display: flex;
+}
+
+.messageRow[data-role="user"] {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-inline-size: 85%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.bubble[data-role="assistant"] {
+  background: var(--accent-primary-soft);
+  color: var(--text-primary);
+  border-end-start-radius: var(--radius-sm);
+}
+
+.bubble[data-role="user"] {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  border-end-end-radius: var(--radius-sm);
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.suggestion {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+  transition: border-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+}
+
+.suggestion:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.composer {
+  display: flex;
+  gap: var(--space-2);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--glass-border-soft);
+}
+
+.input {
+  flex: 1;
+  min-inline-size: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.input:focus-visible {
+  border-color: var(--accent-primary);
+}

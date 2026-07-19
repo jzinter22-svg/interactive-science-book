@@ -1,0 +1,20 @@
+.card {
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.icon {
+  background: linear-gradient(135deg, var(--color-indigo-400), var(--color-indigo-600));
+  color: #fff;
+}
+
+.index {
+  font-size: var(--fs-lesson-title);
+  font-weight: var(--fw-extrabold);
+  color: var(--border-strong);
+}

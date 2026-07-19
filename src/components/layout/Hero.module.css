@@ -1,0 +1,107 @@
+.hero {
+  position: relative;
+  padding-block: var(--space-10) var(--space-9);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glowIndigo,
+.glowAmber {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  opacity: 0.35;
+}
+
+.glowIndigo {
+  inline-size: 26rem;
+  block-size: 26rem;
+  background: var(--color-indigo-400);
+  inset-inline-start: -8rem;
+  inset-block-start: -6rem;
+}
+
+.glowAmber {
+  inline-size: 20rem;
+  block-size: 20rem;
+  background: var(--color-amber-300);
+  inset-inline-end: -6rem;
+  inset-block-start: 4rem;
+}
+
+.content {
+  max-inline-size: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-bold);
+  margin-block-end: var(--space-5);
+}
+
+.title {
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.subtitle {
+  margin-block-start: var(--space-5);
+  color: var(--text-secondary);
+  max-inline-size: 36rem;
+  margin-inline: auto;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-block-start: var(--space-7);
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  max-inline-size: 48rem;
+  margin-inline: auto;
+  margin-block-start: var(--space-9);
+}
+
+@media (min-width: 768px) {
+  .statRow {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-3);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.statValue {
+  font-size: var(--fs-lesson-title);
+  font-weight: var(--fw-extrabold);
+  color: var(--accent-primary);
+}
+
+.statLabel {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}

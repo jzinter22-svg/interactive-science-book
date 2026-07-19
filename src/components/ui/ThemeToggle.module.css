@@ -1,0 +1,46 @@
+.toggle {
+  display: inline-flex;
+  border-radius: var(--radius-full);
+  padding: 0;
+}
+
+.track {
+  position: relative;
+  inline-size: 3rem;
+  block-size: 1.75rem;
+  border-radius: var(--radius-full);
+  background: var(--accent-primary-soft);
+  border: 1px solid var(--border-default);
+  transition: background-color var(--dur-base) var(--ease-standard);
+}
+
+.thumb {
+  position: absolute;
+  inset-block: 2px;
+  inset-inline-start: 2px;
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  place-items: center;
+  color: var(--accent-secondary);
+  transition: inset-inline-start var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
+}
+
+.thumb[data-checked="true"] {
+  inset-inline-start: calc(100% - 1.375rem - 2px);
+  color: var(--accent-primary);
+}
+
+.iconSun,
+.iconMoon {
+  grid-area: 1 / 1;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+
+.thumb[data-checked="false"] .iconMoon,
+.thumb[data-checked="true"] .iconSun {
+  opacity: 0;
+}

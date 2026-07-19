@@ -1,0 +1,300 @@
+/*
+  DESIGN TOKENS
+  Single source of truth for the visual language of the platform.
+  Everything downstream (components, pages) must consume these
+  custom properties rather than hard-coded values.
+*/
+
+:root {
+  /* ============================================================
+     COLOR — BRAND PRIMITIVES
+     Indigo (focus/knowledge) + Amber (highlight/discovery) + Teal (science/interactive)
+     ============================================================ */
+  --color-indigo-50: #eef1ff;
+  --color-indigo-100: #dfe4ff;
+  --color-indigo-200: #c1c9ff;
+  --color-indigo-300: #9ba6fb;
+  --color-indigo-400: #7480f0;
+  --color-indigo-500: #4f5ce0;
+  --color-indigo-600: #3c42c4;
+  --color-indigo-700: #30349e;
+  --color-indigo-800: #262a78;
+  --color-indigo-900: #1c1f5c;
+
+  --color-amber-50: #fff8e6;
+  --color-amber-100: #ffedbf;
+  --color-amber-200: #ffdd8a;
+  --color-amber-300: #ffc94d;
+  --color-amber-400: #f5b421;
+  --color-amber-500: #e29d0b;
+  --color-amber-600: #bd7f05;
+  --color-amber-700: #946204;
+  --color-amber-800: #6b4703;
+  --color-amber-900: #4a3102;
+
+  --color-teal-50: #e7fbf8;
+  --color-teal-100: #c7f4ed;
+  --color-teal-200: #92e7db;
+  --color-teal-300: #57d3c3;
+  --color-teal-400: #2ab8a8;
+  --color-teal-500: #17998c;
+  --color-teal-600: #107b72;
+  --color-teal-700: #0e615b;
+  --color-teal-800: #0b4a46;
+  --color-teal-900: #083532;
+
+  --color-rose-400: #f2618a;
+  --color-rose-500: #e13d6f;
+  --color-rose-600: #c22757;
+
+  --color-green-400: #35c48d;
+  --color-green-500: #1fa571;
+  --color-green-600: #14855a;
+  --color-green-700: #0f6a47;
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-25: #fbfcfe;
+  --color-neutral-50: #f5f6fb;
+  --color-neutral-100: #eceef6;
+  --color-neutral-150: #e2e5f0;
+  --color-neutral-200: #d4d8e6;
+  --color-neutral-300: #b7bcd1;
+  --color-neutral-400: #9298b3;
+  --color-neutral-500: #6f7590;
+  --color-neutral-600: #545a75;
+  --color-neutral-700: #3d4159;
+  --color-neutral-800: #262a3d;
+  --color-neutral-850: #1a1d2c;
+  --color-neutral-900: #12141f;
+  --color-neutral-950: #0a0b12;
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  --font-family-base: "Cairo", "Segoe UI", "Tahoma", sans-serif;
+  --font-family-mono: "Cairo", ui-monospace, "SFMono-Regular", monospace;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Fluid type scale — clamps between mobile and desktop */
+  --fs-caption: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
+  --fs-body-sm: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+  --fs-body: clamp(0.9375rem, 0.9rem + 0.18vw, 1.0625rem);
+  --fs-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --fs-button: clamp(0.875rem, 0.85rem + 0.12vw, 1rem);
+  --fs-lesson-title: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --fs-section-title: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --fs-chapter-title: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --fs-hero-title: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --fs-equation: clamp(1rem, 0.95rem + 0.2vw, 1.1875rem);
+
+  --lh-tight: 1.25;
+  --lh-snug: 1.4;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.85;
+
+  --ls-tight: -0.01em;
+  --ls-normal: 0;
+  --ls-wide: 0.02em;
+
+  /* ============================================================
+     SPACING — 8pt system (4px half-step included for fine control)
+     ============================================================ */
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 2.5rem; /* 40px */
+  --space-8: 3rem; /* 48px */
+  --space-9: 4rem; /* 64px */
+  --space-10: 5rem; /* 80px */
+  --space-11: 6rem; /* 96px */
+  --space-12: 8rem; /* 128px */
+
+  /* ============================================================
+     RADIUS
+     ============================================================ */
+  --radius-sm: 0.5rem; /* 8px  */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.5rem; /* 24px */
+  --radius-2xl: 2rem; /* 32px */
+  --radius-full: 999px;
+
+  /* ============================================================
+     BLUR / GLASS
+     ============================================================ */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+  --blur-xl: 40px;
+
+  /* ============================================================
+     ELEVATION — soft, diffused, never harsh
+     ============================================================ */
+  --shadow-xs: 0 1px 2px 0 rgba(18, 20, 31, 0.04);
+  --shadow-sm: 0 2px 8px -2px rgba(18, 20, 31, 0.07), 0 1px 2px -1px rgba(18, 20, 31, 0.05);
+  --shadow-md: 0 8px 24px -8px rgba(18, 20, 31, 0.12), 0 2px 6px -2px rgba(18, 20, 31, 0.06);
+  --shadow-lg: 0 16px 40px -12px rgba(18, 20, 31, 0.16), 0 4px 12px -4px rgba(18, 20, 31, 0.08);
+  --shadow-xl: 0 24px 64px -16px rgba(18, 20, 31, 0.22), 0 8px 20px -6px rgba(18, 20, 31, 0.1);
+  --shadow-glow-indigo: 0 0 0 1px rgba(79, 92, 224, 0.12), 0 8px 24px -4px rgba(79, 92, 224, 0.28);
+  --shadow-glow-amber: 0 0 0 1px rgba(226, 157, 11, 0.14), 0 8px 24px -4px rgba(226, 157, 11, 0.28);
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-slower: 480ms;
+
+  /* ============================================================
+     BREAKPOINTS (reference only — media queries can't read vars,
+     kept here for documentation + JS matchMedia usage)
+     ============================================================ */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-laptop: 1024px;
+  --bp-desktop: 1440px;
+  --bp-wide: 1728px;
+
+  /* ============================================================
+     CONTAINER WIDTHS
+     ============================================================ */
+  --container-sm: 40rem;
+  --container-md: 56rem;
+  --container-lg: 72rem;
+  --container-xl: 84rem;
+  --container-reading: 42rem;
+
+  /* ============================================================
+     Z-INDEX SCALE
+     ============================================================ */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-sidebar: 300;
+  --z-dropdown: 400;
+  --z-overlay: 500;
+  --z-modal: 600;
+  --z-toast: 700;
+  --z-tooltip: 800;
+}
+
+/* ============================================================
+   THEME — LIGHT (default)
+   Soft frosted glass on warm paper background, high text contrast
+   ============================================================ */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-canvas: #f2f4fb;
+  --bg-canvas-gradient: radial-gradient(120% 120% at 15% 0%, #eef1ff 0%, #f2f4fb 45%, #f7f3ea 100%);
+  --bg-surface: var(--color-neutral-0);
+  --bg-surface-sunken: var(--color-neutral-50);
+
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-soft: rgba(38, 42, 61, 0.06);
+  --glass-blur: var(--blur-lg);
+
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-600);
+  --text-tertiary: #5c6284;
+  --text-on-accent: #ffffff;
+  --text-link: var(--color-indigo-600);
+
+  --border-default: rgba(38, 42, 61, 0.09);
+  --border-strong: rgba(38, 42, 61, 0.16);
+
+  --accent-primary: var(--color-indigo-500);
+  --accent-primary-hover: var(--color-indigo-600);
+  --accent-primary-soft: var(--color-indigo-50);
+  --accent-secondary: var(--color-amber-700);
+  --accent-secondary-soft: var(--color-amber-50);
+  --accent-tertiary: var(--color-teal-700);
+  --accent-tertiary-soft: var(--color-teal-50);
+
+  --status-success: var(--color-green-700);
+  --status-success-soft: #e9faf2;
+  --status-warning: var(--color-amber-700);
+  --status-warning-soft: #fff6e0;
+  --status-danger: var(--color-rose-600);
+  --status-danger-soft: #fdeaf0;
+  --status-info: var(--color-indigo-500);
+  --status-info-soft: #eef1ff;
+
+  --shadow-elevated: var(--shadow-md);
+  --scrollbar-thumb: rgba(38, 42, 61, 0.18);
+}
+
+/* ============================================================
+   THEME — DARK
+   Frosted glass suspended over deep space, warm accent glow retained
+   ============================================================ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-canvas: #0b0d16;
+  --bg-canvas-gradient: radial-gradient(120% 120% at 15% 0%, #191d3a 0%, #0e1020 45%, #150f1c 100%);
+  --bg-surface: var(--color-neutral-850);
+  --bg-surface-sunken: var(--color-neutral-900);
+
+  --glass-bg: rgba(30, 33, 54, 0.55);
+  --glass-bg-strong: rgba(34, 38, 60, 0.72);
+  --glass-bg-subtle: rgba(30, 33, 54, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-border-soft: rgba(255, 255, 255, 0.06);
+  --glass-blur: var(--blur-lg);
+
+  --text-primary: #f3f4fb;
+  --text-secondary: #b4b8d2;
+  --text-tertiary: #8a8fb0;
+  --text-on-accent: #ffffff;
+  --text-link: var(--color-indigo-300);
+
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --accent-primary: var(--color-indigo-400);
+  --accent-primary-hover: var(--color-indigo-300);
+  --accent-primary-soft: rgba(79, 92, 224, 0.16);
+  --accent-secondary: var(--color-amber-400);
+  --accent-secondary-soft: rgba(245, 180, 33, 0.14);
+  --accent-tertiary: var(--color-teal-400);
+  --accent-tertiary-soft: rgba(42, 184, 168, 0.14);
+
+  --status-success: var(--color-green-400);
+  --status-success-soft: rgba(53, 196, 141, 0.14);
+  --status-warning: var(--color-amber-400);
+  --status-warning-soft: rgba(245, 180, 33, 0.14);
+  --status-danger: var(--color-rose-400);
+  --status-danger-soft: rgba(242, 97, 138, 0.14);
+  --status-info: var(--color-indigo-300);
+  --status-info-soft: rgba(79, 92, 224, 0.16);
+
+  --shadow-elevated: 0 16px 40px -12px rgba(0, 0, 0, 0.5);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-slower: 0ms;
+  }
+}

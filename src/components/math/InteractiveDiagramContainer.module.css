@@ -1,0 +1,78 @@
+.card {
+  border-radius: var(--radius-lg);
+  padding: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--glass-border-soft);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.controlButton {
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+  font-weight: var(--fw-bold);
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+
+.controlButton:hover {
+  background: var(--color-indigo-100);
+}
+
+.zoomLabel {
+  min-inline-size: 3ch;
+  text-align: center;
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas {
+  min-block-size: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: var(--space-6);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    var(--glass-border-soft) 23px,
+    var(--glass-border-soft) 24px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 23px,
+    var(--glass-border-soft) 23px,
+    var(--glass-border-soft) 24px
+  );
+}
+
+.canvasInner {
+  transition: transform var(--dur-base) var(--ease-standard);
+}

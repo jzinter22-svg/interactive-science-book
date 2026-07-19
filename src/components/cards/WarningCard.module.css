@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  border-inline-start: 3px solid var(--status-warning);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--status-warning);
+  margin-block-start: 2px;
+}
+
+.title {
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-block-end: var(--space-1);
+}
+
+.body {
+  color: var(--text-secondary);
+}
