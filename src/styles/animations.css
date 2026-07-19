@@ -1,0 +1,72 @@
+/* ============================================================
+   SHARED MOTION UTILITIES
+   Durations/easings come from tokens.css, which zeroes them out
+   under prefers-reduced-motion — these classes are safe by default.
+   ============================================================ */
+
+.fade-in {
+  animation: fadeIn var(--dur-slow) var(--ease-standard) both;
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--dur-slow) var(--ease-decelerate) both;
+}
+
+.fade-in-down {
+  animation: fadeInDown var(--dur-slow) var(--ease-decelerate) both;
+}
+
+.scale-in {
+  animation: scaleIn var(--dur-base) var(--ease-decelerate) both;
+}
+
+/* Stagger helper: apply alongside one of the animations above to
+   list items so they cascade in rather than popping simultaneously. */
+.stagger-1 { animation-delay: 40ms; }
+.stagger-2 { animation-delay: 80ms; }
+.stagger-3 { animation-delay: 120ms; }
+.stagger-4 { animation-delay: 160ms; }
+.stagger-5 { animation-delay: 200ms; }
+.stagger-6 { animation-delay: 240ms; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

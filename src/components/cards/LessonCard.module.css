@@ -55,8 +55,10 @@ html[dir="rtl"] .card:hover {
   color: var(--text-primary);
   font-size: var(--fs-body);
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   max-inline-size: 100%;
 }
 

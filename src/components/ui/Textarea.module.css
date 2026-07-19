@@ -1,0 +1,13 @@
+.wrap {
+  align-items: stretch;
+  padding-inline: 0;
+}
+
+.textarea {
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  resize: vertical;
+  min-block-size: 5rem;
+  line-height: var(--lh-relaxed);
+  font-family: var(--font-family-base);
+}

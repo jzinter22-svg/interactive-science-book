@@ -50,7 +50,7 @@ export function ChapterPage() {
       <section className={styles.lessonsSection}>
         <h2 className={styles.sectionTitle}>الدروس</h2>
         <div className={styles.lessonsList}>
-          {chapter.lessons.map((lesson) => (
+          {chapter.lessons.map((lesson, i) => (
             <LessonCard
               key={lesson.id}
               title={lesson.title}
@@ -58,6 +58,7 @@ export function ChapterPage() {
               kind={lesson.kind}
               completed={lesson.completed}
               onClick={() => navigate(`/lesson/${lesson.id}`)}
+              className={`fade-in-up stagger-${Math.min(i + 1, 6)}`}
             />
           ))}
         </div>

@@ -20,6 +20,9 @@
 }
 
 .itemTitle {
+  flex: 1;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
   font-weight: var(--fw-semibold);
   color: var(--text-primary);
   font-size: var(--fs-body);

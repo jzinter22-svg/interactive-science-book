@@ -7,6 +7,7 @@ interface LessonCardProps {
   kind?: "reading" | "video" | "interactive" | "quiz";
   completed?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 const kindLabel: Record<NonNullable<LessonCardProps["kind"]>, string> = {
@@ -16,9 +17,9 @@ const kindLabel: Record<NonNullable<LessonCardProps["kind"]>, string> = {
   quiz: "اختبار",
 };
 
-export function LessonCard({ title, duration, kind = "reading", completed, onClick }: LessonCardProps) {
+export function LessonCard({ title, duration, kind = "reading", completed, onClick, className = "" }: LessonCardProps) {
   return (
-    <button type="button" className={`glass-surface ${styles.card}`} onClick={onClick}>
+    <button type="button" className={`glass-surface ${styles.card} ${className}`.trim()} onClick={onClick}>
       <span className={styles.status} data-done={completed} aria-hidden="true">
         {completed ? <CheckIcon /> : <span className={styles.dot} />}
       </span>

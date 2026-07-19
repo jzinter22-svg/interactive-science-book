@@ -23,6 +23,8 @@
 
 .header h4 {
   flex: 1;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
 }
 
 .body {

@@ -37,12 +37,15 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .continueMeta {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  flex: 1;
+  min-inline-size: 0;
 }
 
 .continueChapterLabel {
@@ -55,6 +58,7 @@
   font-size: var(--fs-lesson-title);
   font-weight: var(--fw-bold);
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .continueProgressRow {

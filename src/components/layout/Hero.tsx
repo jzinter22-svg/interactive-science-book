@@ -22,7 +22,7 @@ export function Hero({ eyebrow, title, subtitle, primaryAction, secondaryAction,
       <div className={styles.glowIndigo} aria-hidden="true" />
       <div className={styles.glowAmber} aria-hidden="true" />
 
-      <div className={styles.content}>
+      <div className={`${styles.content} fade-in-up`}>
         {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
         <h1 className={`text-hero ${styles.title}`}>{title}</h1>
         {subtitle && <p className={`text-body-lg ${styles.subtitle}`}>{subtitle}</p>}
@@ -45,8 +45,11 @@ export function Hero({ eyebrow, title, subtitle, primaryAction, secondaryAction,
 
       {stats && stats.length > 0 && (
         <div className={styles.statRow}>
-          {stats.map((stat) => (
-            <div className={`glass-surface ${styles.statCard}`} key={stat.label}>
+          {stats.map((stat, i) => (
+            <div
+              className={`glass-surface ${styles.statCard} fade-in-up stagger-${Math.min(i + 1, 6)}`}
+              key={stat.label}
+            >
               <span className={styles.statValue}>{stat.value}</span>
               <span className={styles.statLabel}>{stat.label}</span>
             </div>

@@ -1,0 +1,27 @@
+{
+  "name": "كتاب الطبيعيات التفاعلي",
+  "short_name": "الطبيعيات التفاعلي",
+  "description": "منصة تعليمية عصرية لتعلّم الفيزياء بتصميم زجاجي فاخر، قراءة مريحة، ومحتوى تفاعلي.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/interactive-science-book/",
+  "scope": "/interactive-science-book/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f2f4fb",
+  "theme_color": "#4f5ce0",
+  "icons": [
+    {
+      "src": "/interactive-science-book/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/interactive-science-book/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

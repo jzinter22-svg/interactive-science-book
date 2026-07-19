@@ -31,6 +31,8 @@
 }
 
 .title {
+  min-inline-size: 0;
+  overflow-wrap: break-word;
   font-size: var(--fs-section-title);
   font-weight: var(--fw-bold);
   color: var(--text-primary);

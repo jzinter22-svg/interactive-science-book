@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 
 export type Theme = "light" | "dark";
 
-const STORAGE_KEY = "isb-theme";
+const STORAGE_KEY = "ipb-theme";
 
 interface ThemeContextValue {
   theme: Theme;

@@ -10,12 +10,22 @@ interface ChapterCardProps {
   progress: number;
   icon?: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 }
 
-export function ChapterCard({ index, title, description, lessonCount, progress, icon, onClick }: ChapterCardProps) {
+export function ChapterCard({
+  index,
+  title,
+  description,
+  lessonCount,
+  progress,
+  icon,
+  onClick,
+  className = "",
+}: ChapterCardProps) {
   return (
     <article
-      className={`glass-surface ${shared.card} ${shared.cardHover} ${styles.card}`}
+      className={`glass-surface ${shared.card} ${shared.cardHover} ${styles.card} ${className}`.trim()}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}

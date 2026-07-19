@@ -75,5 +75,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-block-start: var(--space-2);
+  /* Pushes itself (and whatever trails it, e.g. a ProgressBar) to the
+     bottom of the card — keeps the footer cluster aligned across a row
+     of stretched cards even when one card's title/description is much
+     longer than its neighbors'. */
+  margin-block-start: auto;
+  padding-block-start: var(--space-2);
 }

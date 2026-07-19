@@ -22,9 +22,9 @@ export function Footer() {
       <Container>
         <div className={styles.grid}>
           <div className={styles.brandCol}>
-            <span className={styles.brandText}>منصة العلوم التفاعلية</span>
+            <span className={styles.brandText}>كتاب الطبيعيات التفاعلي</span>
             <p className={styles.tagline}>
-              تجربة تعلم عصرية، مصممة لتكون واضحة ومريحة وممتعة في كل صفحة.
+              تجربة تعلم عصرية لمادة الفيزياء، مصممة لتكون واضحة ومريحة وممتعة في كل صفحة.
             </p>
           </div>
           {columns.map((col) => (

@@ -17,6 +17,7 @@
   font-weight: var(--fw-bold);
   color: var(--text-primary);
   line-height: var(--lh-snug);
+  overflow-wrap: break-word;
 }
 
 .progressRow {

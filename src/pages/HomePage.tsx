@@ -18,7 +18,7 @@ export function HomePage() {
     <>
       <Hero
         eyebrow="بيانات تجريبية — للمعاينة فقط"
-        title="منصة العلوم التفاعلية"
+        title="كتاب الطبيعيات التفاعلي"
         subtitle="مساحة تعلّم واحدة تجمع القراءة والفيديو والتمارين التفاعلية والمساعد الذكي، بتصميم مريح للقراءة الطويلة."
         primaryAction={{ label: "استعرض الفصول", onClick: () => navigate("/chapter/c1") }}
         secondaryAction={{ label: "تبديل السمة", onClick: toggleTheme }}
@@ -75,7 +75,7 @@ export function HomePage() {
             <span className={styles.sectionCaption}>بيانات تجريبية — سيتم استبدالها بالمحتوى الفعلي لاحقًا</span>
           </div>
           <div className="auto-grid">
-            {demoChapters.map((chapter) => (
+            {demoChapters.map((chapter, i) => (
               <ChapterCard
                 key={chapter.id}
                 index={chapter.index}
@@ -84,6 +84,7 @@ export function HomePage() {
                 lessonCount={chapter.lessons.length}
                 progress={chapter.progress}
                 onClick={() => navigate(`/chapter/${chapter.id}`)}
+                className={`fade-in-up stagger-${Math.min(i + 1, 6)}`}
               />
             ))}
           </div>

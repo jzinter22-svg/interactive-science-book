@@ -36,6 +36,7 @@
   font-weight: var(--fw-bold);
   color: var(--text-primary);
   line-height: var(--lh-tight);
+  overflow-wrap: break-word;
 }
 
 .description {

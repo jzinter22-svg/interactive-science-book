@@ -41,7 +41,7 @@ export function Header({ onMenuToggle, menuOpen }: HeaderProps) {
           <span className={styles.brandMark} aria-hidden="true">
             <BookIcon />
           </span>
-          <span className={styles.brandText}>منصة العلوم التفاعلية</span>
+          <span className={styles.brandText}>كتاب الطبيعيات التفاعلي</span>
         </Link>
 
         <nav className={styles.nav} aria-label="التنقل الرئيسي">

@@ -21,6 +21,13 @@ import { Tabs } from "../components/ui/Tabs";
 import { Accordion } from "../components/ui/Accordion";
 import { Timeline } from "../components/ui/Timeline";
 import { ProgressBar } from "../components/ui/ProgressBar";
+import { Breadcrumb } from "../components/ui/Breadcrumb";
+import { Input } from "../components/ui/Input";
+import { Textarea } from "../components/ui/Textarea";
+import { Spinner } from "../components/ui/Spinner";
+import { Skeleton, ChapterCardSkeleton, LessonCardSkeleton } from "../components/ui/Skeleton";
+import { EmptyState } from "../components/ui/EmptyState";
+import { ErrorState } from "../components/ui/ErrorState";
 import styles from "./ShowcasePage.module.css";
 
 const demoQuizQuestions: QuizQuestion[] = [
@@ -74,12 +81,12 @@ export function ShowcasePage() {
       <div id="hero">
         <Hero
           eyebrow="معاينة النظام التصميمي — لا يحتوي على محتوى تعليمي"
-          title="منصة العلوم التفاعلية"
-          subtitle="بنية تصميم فاخرة بأسلوب الزجاج الشفاف، مصممة لتجربة قراءة مريحة وطويلة، ومهيأة بالكامل لدعم المحتوى العلمي والمعادلات التفاعلية لاحقًا."
+          title="كتاب الطبيعيات التفاعلي"
+          subtitle="بنية تصميم فاخرة بأسلوب الزجاج الشفاف، مصممة لتجربة قراءة مريحة وطويلة، ومهيأة بالكامل لدعم محتوى الفيزياء والمعادلات التفاعلية لاحقًا."
           primaryAction={{ label: "استكشف المكوّنات", onClick: scrollToChapters }}
           secondaryAction={{ label: "تبديل السمة", onClick: toggleTheme }}
           stats={[
-            { value: "٢٤+", label: "مكوّن جاهز" },
+            { value: "٣٥+", label: "مكوّن جاهز" },
             { value: "٢", label: "وضع سمة" },
             { value: "٤", label: "نقاط استجابة" },
             { value: "AA", label: "توافق إتاحة" },
@@ -88,6 +95,20 @@ export function ShowcasePage() {
       </div>
 
       <Container>
+        {/* NAVIGATION */}
+        <section id="navigation" className={styles.section}>
+          <SectionHeader eyebrow="Breadcrumb" description="مسار تنقل تجريبي يوضح الموقع الحالي داخل التسلسل الهرمي للمحتوى." />
+          <Breadcrumb
+            items={[
+              { label: "الرئيسية", href: "/" },
+              { label: "الوحدة التجريبية الأولى", href: "/chapter/c1" },
+              { label: "عنصر درس تجريبي طويل نسبيًا لاختبار التفاف المسار" },
+            ]}
+          />
+        </section>
+
+        <div className={styles.divider} />
+
         {/* CHAPTER CARDS */}
         <section id="chapters" className={styles.section}>
           <SectionHeader
@@ -190,6 +211,85 @@ export function ShowcasePage() {
           <SectionHeader eyebrow="AI Assistant Card" description="واجهة محادثة تجريبية للمساعد الذكي، جاهزة للربط بمصدر إجابات لاحقًا." />
           <div style={{ maxWidth: "28rem" }}>
             <AIAssistantCard />
+          </div>
+        </section>
+
+        <div className={styles.divider} />
+
+        {/* FORMS */}
+        <section id="forms" className={styles.section}>
+          <SectionHeader eyebrow="Input · Textarea" description="عناصر إدخال جاهزة بحالات: عادية، مع مساعدة، مع خطأ، ومعطّلة." />
+          <div className="bento-grid">
+            <div className="span-4">
+              <Input label="الاسم الكامل" placeholder="اكتب اسمك هنا" />
+            </div>
+            <div className="span-4">
+              <Input
+                label="البريد الإلكتروني"
+                type="email"
+                placeholder="name@example.com"
+                error="صيغة البريد الإلكتروني غير صحيحة"
+              />
+            </div>
+            <div className="span-4">
+              <Input label="حقل معطّل" placeholder="غير متاح حاليًا" disabled helperText="هذا الحقل غير قابل للتعديل الآن" />
+            </div>
+            <div className="span-full">
+              <Textarea label="ملاحظات إضافية" placeholder="اكتب ملاحظتك هنا..." helperText="اختياري — حتى 500 حرف" />
+            </div>
+          </div>
+        </section>
+
+        <div className={styles.divider} />
+
+        {/* LOADING STATES */}
+        <section id="loading-states" className={styles.section}>
+          <SectionHeader eyebrow="Loading States" description="مؤشرات تحميل عامة وهياكل عظمية (Skeleton) بشكل البطاقات الفعلي." />
+          <div className="stack stack--lg">
+            <div className={styles.buttonRow}>
+              <Spinner size="sm" />
+              <Spinner size="md" />
+              <Spinner size="lg" />
+              <Button disabled>
+                <Spinner size="sm" /> جارٍ الحفظ...
+              </Button>
+            </div>
+            <div className={styles.skeletonRow}>
+              <Skeleton variant="text" width="40%" />
+              <Skeleton variant="text" width="70%" />
+              <Skeleton variant="text" width="55%" />
+            </div>
+            <div className="auto-grid">
+              <ChapterCardSkeleton />
+              <ChapterCardSkeleton />
+            </div>
+            <div className="stack">
+              <LessonCardSkeleton />
+              <LessonCardSkeleton />
+            </div>
+          </div>
+        </section>
+
+        <div className={styles.divider} />
+
+        {/* EMPTY / ERROR STATES */}
+        <section id="feedback-states" className={styles.section}>
+          <SectionHeader eyebrow="Empty · Error States" description="حالات جاهزة لعرضها عند عدم وجود محتوى أو عند فشل التحميل." />
+          <div className="bento-grid">
+            <div className="span-6">
+              <div className={`glass-surface ${styles.statePanel}`}>
+                <EmptyState
+                  title="لا توجد دروس هنا بعد"
+                  description="سيتم إضافة الدروس إلى هذه الوحدة قريبًا."
+                  action={{ label: "الرجوع إلى الفصول", onClick: () => {} }}
+                />
+              </div>
+            </div>
+            <div className="span-6">
+              <div className={`glass-surface ${styles.statePanel}`}>
+                <ErrorState onRetry={() => {}} />
+              </div>
+            </div>
           </div>
         </section>
 
