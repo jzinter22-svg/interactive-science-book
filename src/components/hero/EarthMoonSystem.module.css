@@ -1,0 +1,180 @@
+.root {
+  position: relative;
+  inline-size: 15rem;
+  block-size: 15rem;
+  flex-shrink: 0;
+}
+
+.root[data-running="false"] * {
+  animation-play-state: paused;
+}
+
+.orbitPath {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  inline-size: 13.75rem;
+  block-size: 13.75rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed var(--glass-border-strong, var(--glass-border-soft));
+  opacity: 0.4;
+}
+
+.earthShadowCast {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 58%;
+  inline-size: 5.5rem;
+  block-size: 1.25rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.28), transparent 80%);
+  filter: blur(3px);
+}
+
+.earth {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  inline-size: 6.5rem;
+  block-size: 6.5rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1c5d8c;
+  box-shadow:
+    inset -0.9rem -0.7rem 1.6rem rgba(0, 0, 0, 0.4),
+    0 0.5rem 1.5rem rgba(20, 40, 70, 0.35);
+}
+
+.earthSpin {
+  position: absolute;
+  inset: 0;
+  animation: earth-spin 26s linear infinite;
+}
+
+.continent1,
+.continent2,
+.continent3 {
+  position: absolute;
+  background: #3f7a4f;
+}
+
+.continent1 {
+  inset-inline-start: 10%;
+  inset-block-start: 20%;
+  inline-size: 2.6rem;
+  block-size: 2rem;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  transform: rotate(-12deg);
+}
+
+.continent2 {
+  inset-inline-start: 55%;
+  inset-block-start: 55%;
+  inline-size: 2.2rem;
+  block-size: 1.7rem;
+  border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;
+  background: #6b5335;
+  transform: rotate(20deg);
+}
+
+.continent3 {
+  inset-inline-start: 60%;
+  inset-block-start: 8%;
+  inline-size: 1.5rem;
+  block-size: 1.4rem;
+  border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+}
+
+.earthShading {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.35), transparent 45%),
+    radial-gradient(circle at 68% 75%, rgba(0, 0, 0, 0.45), transparent 55%);
+  pointer-events: none;
+}
+
+.moonOrbit {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  inline-size: 13.75rem;
+  block-size: 13.75rem;
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 13s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 0;
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #c3c7ce;
+  box-shadow:
+    inset -0.25rem -0.2rem 0.4rem rgba(0, 0, 0, 0.35),
+    0 0.15rem 0.4rem rgba(20, 40, 70, 0.3);
+}
+
+.moonCrater1,
+.moonCrater2 {
+  position: absolute;
+  border-radius: 50%;
+  background: #8f939c;
+}
+
+.moonCrater1 {
+  inset-inline-start: 20%;
+  inset-block-start: 30%;
+  inline-size: 0.3rem;
+  block-size: 0.3rem;
+}
+
+.moonCrater2 {
+  inset-inline-start: 55%;
+  inset-block-start: 55%;
+  inline-size: 0.22rem;
+  block-size: 0.22rem;
+}
+
+@keyframes earth-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moon-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .root {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 900px) {
+  .root {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .earthSpin,
+  .moonOrbit {
+    animation: none;
+  }
+}

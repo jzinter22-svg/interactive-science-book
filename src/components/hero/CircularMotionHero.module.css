@@ -1,0 +1,52 @@
+.root {
+  inline-size: 100%;
+  max-inline-size: 21rem;
+  margin-inline: auto;
+  margin-block-start: var(--space-6);
+}
+
+.svg {
+  inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
+
+.root[data-running="false"] .wheelGroup,
+.root[data-running="false"] .orbitGroup {
+  animation-play-state: paused;
+}
+
+.wheelGroup {
+  transform-origin: 120px 100px;
+  animation: wheel-spin 7s linear infinite;
+}
+
+.orbitGroup {
+  transform-origin: 120px 100px;
+  animation: orbit-spin 10s linear infinite;
+}
+
+@keyframes wheel-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheelGroup,
+  .orbitGroup {
+    animation: none;
+  }
+}

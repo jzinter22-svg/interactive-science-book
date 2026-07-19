@@ -1,0 +1,177 @@
+.root {
+  position: relative;
+  inline-size: 16rem;
+  block-size: 16rem;
+  flex-shrink: 0;
+}
+
+.root[data-running="false"] .item {
+  animation-play-state: paused;
+}
+
+.item {
+  position: absolute;
+  will-change: transform;
+}
+
+.hexagon {
+  inset-inline-start: 8%;
+  inset-block-start: 6%;
+  opacity: 0.75;
+  animation: float-rotate 9s ease-in-out infinite;
+}
+
+.molecule {
+  inset-inline-start: 0%;
+  inset-block-start: 42%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  animation: float 7s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.electron {
+  inset-inline-start: 58%;
+  inset-block-start: 2%;
+  opacity: 0.8;
+  animation: spin-slow 18s linear infinite;
+}
+
+.electronDot {
+  transform-origin: 25px 25px;
+  animation: spin-slow 4s linear infinite reverse;
+}
+
+.moleculeLinear {
+  inset-inline-start: 42%;
+  inset-block-start: 66%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  animation: float 8s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.chip {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  direction: ltr;
+  white-space: nowrap;
+  animation: float 6.5s ease-in-out infinite;
+}
+
+.chipA {
+  inset-inline-start: 2%;
+  inset-block-start: 68%;
+  background: var(--accent-secondary-soft);
+  color: var(--accent-secondary);
+  animation-delay: -1s;
+}
+
+.chipB {
+  inset-inline-start: 78%;
+  inset-block-start: 22%;
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+  animation-delay: -4s;
+}
+
+.chipC {
+  inset-inline-start: 70%;
+  inset-block-start: 58%;
+  background: var(--accent-tertiary-soft);
+  color: var(--accent-tertiary);
+  animation-delay: -2.2s;
+}
+
+.chipD {
+  inset-inline-start: 30%;
+  inset-block-start: 4%;
+  background: var(--accent-quaternary-soft);
+  color: var(--accent-quaternary);
+  animation-delay: -5s;
+}
+
+.particle {
+  border-radius: 50%;
+  background: var(--accent-primary);
+  opacity: 0.5;
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.particleA {
+  inset-inline-start: 38%;
+  inset-block-start: 34%;
+  inline-size: 0.4rem;
+  block-size: 0.4rem;
+  animation-delay: -2.5s;
+}
+
+.particleB {
+  inset-inline-start: 20%;
+  inset-block-start: 80%;
+  inline-size: 0.3rem;
+  block-size: 0.3rem;
+  background: var(--accent-tertiary);
+  animation-delay: -4.5s;
+}
+
+.formulaLabel {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  color: var(--text-tertiary);
+  direction: ltr;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes float-rotate {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-8deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .root {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 900px) {
+  .root {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .electronDot {
+    animation: none;
+  }
+}

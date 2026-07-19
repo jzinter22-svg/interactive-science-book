@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 import { Button } from "../ui/Button";
+import { EarthMoonSystem } from "../hero/EarthMoonSystem";
+import { ChemistryDecorations } from "../hero/ChemistryDecorations";
+import { CircularMotionHero } from "../hero/CircularMotionHero";
 import styles from "./Hero.module.css";
 
 interface HeroStat {
@@ -22,10 +25,19 @@ export function Hero({ eyebrow, title, subtitle, primaryAction, secondaryAction,
       <div className={styles.glowIndigo} aria-hidden="true" />
       <div className={styles.glowAmber} aria-hidden="true" />
 
+      <div className={styles.earthCorner}>
+        <EarthMoonSystem />
+      </div>
+      <div className={styles.chemCorner}>
+        <ChemistryDecorations />
+      </div>
+
       <div className={`${styles.content} fade-in-up`}>
         {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
         <h1 className={`text-hero ${styles.title}`}>{title}</h1>
         {subtitle && <p className={`text-body-lg ${styles.subtitle}`}>{subtitle}</p>}
+
+        <CircularMotionHero />
 
         {(primaryAction || secondaryAction) && (
           <div className={styles.actions}>

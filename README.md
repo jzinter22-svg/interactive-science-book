@@ -146,6 +146,34 @@ color pairs. Every card is built to grow with content — no fixed heights,
 no truncated Arabic text — and has been stress-tested with long strings
 to rule out overflow, clipping, or overlap at every breakpoint.
 
+### Homepage hero decorations
+
+`src/components/hero/` — three purely decorative pieces that turn the
+homepage hero into more of "a digital science lab" than a static landing
+page, all `aria-hidden` and built the same way as the physics
+simulations (CSS `@keyframes` for the actual motion — compositor-only,
+no per-frame JS — plus `useInViewport` from `src/components/simulations/hooks.ts`
+to pause every animation the instant it scrolls off-screen):
+
+- **EarthMoonSystem** — Earth spins on its axis (rotating continents
+  under a fixed radial-gradient light/shadow overlay), the Moon orbits
+  around it on its own independent period.
+- **ChemistryDecorations** — a sparse, gently floating/rotating cluster
+  of a hexagonal ring, two simple ball-and-stick molecules, an
+  electron-orbit glyph, and formula chips (H₂O, CO₂, NaCl, CH₄, O₂,
+  H₂SO₄) — deliberately kept sparse rather than dense, per "elegant, not
+  cluttered."
+- **CircularMotionHero** — sits centered below the hero title: a
+  spinning spoked wheel (rotational motion) plus an orbiting body
+  carrying its live velocity and centripetal-force vectors (circular
+  motion), both rotating around one shared pivot, with a soft SVG glow
+  filter on the moving body.
+
+All three respect `prefers-reduced-motion` (animations disabled
+outright) and hide the two side decorations below a 900px viewport width
+so a narrow phone screen keeps only the centered circular-motion
+illustration — confirmed with no horizontal overflow at any breakpoint.
+
 ## Running locally
 
 ```bash

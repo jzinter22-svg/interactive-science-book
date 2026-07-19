@@ -30,6 +30,22 @@
   inset-block-start: 4rem;
 }
 
+.earthCorner,
+.chemCorner {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.earthCorner {
+  inset-inline-start: -1.5rem;
+}
+
+.chemCorner {
+  inset-inline-end: -1.5rem;
+}
+
 .content {
   max-inline-size: 46rem;
   margin-inline: auto;
