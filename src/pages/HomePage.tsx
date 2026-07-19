@@ -73,7 +73,7 @@ export function HomePage() {
         <section className={styles.section} id="chapters">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>الفصول</h2>
-            <span className={styles.sectionCaption}>الدرس الأول من الفصل الأول جاهز؛ باقي الدروس قيد الإعداد</span>
+            <span className={styles.sectionCaption}>أول درسين من الفصل الأول جاهزان؛ باقي الدروس قيد الإعداد</span>
           </div>
           <div className="auto-grid">
             {chapters.map((chapter, i) => (

@@ -1,17 +1,22 @@
 // ============================================================
-// الفصل الأول: الحركة الدائرية والدورانية — الدرس الأول
+// الفصل الأول: الحركة الدائرية والدورانية — الدروس ١ و٢
 //
-// Transcribed verbatim from the source textbook (books/كتاب الطبيعيات.pdf,
-// pages 5–9), sections 1-1 (تمهيد), 1-2 (الحركة الدائرية) and 1-3
-// (القوة المركزية). This is the GOLDEN LESSON — the permanent reference
-// implementation every future lesson must match in structure and quality.
+// Transcribed verbatim from the source textbook (books/كتاب الطبيعيات.pdf).
 //
-// Only Lesson One is imported here; the rest of the chapter (1-4 onward)
-// is intentionally not yet written. Supplementary material (the summary,
-// glossary, quiz explanations, and the bicycle/no-work exercise solutions)
-// is derived directly from concepts and formulas already presented on
-// these same pages — nothing here introduces a physics fact the source
-// didn't already teach.
+// Lesson One (c1-l1, pages 5–9, sections 1-1 to 1-3) is the GOLDEN
+// LESSON — the permanent reference implementation every future lesson
+// must match in structure and quality. Supplementary material (its
+// summary, glossary, quiz explanations, and the bicycle/no-work exercise
+// solutions) is derived directly from concepts and formulas already
+// presented on those same pages — nothing there introduces a physics
+// fact the source didn't already teach.
+//
+// Lesson Two (c1-l2, pages 9–10, section 1-4) follows the same standard.
+// Its topic (Kepler's laws) has no worked example or exercise anywhere
+// in the chapter's question bank, so — rather than inventing one — this
+// lesson simply has no quiz/exercise blocks.
+//
+// The rest of the chapter (1-5 onward) is intentionally not yet written.
 // ============================================================
 
 import type { Chapter } from "../types";
@@ -428,6 +433,173 @@ export const chapter1: Chapter = {
             "ما الفرق بين aᴄ و aᵀ؟",
             "لماذا لا تبذل القوة المركزية شغلاً؟",
             "كيف أحسب السرعة القصوى الآمنة عند منعطف؟",
+          ],
+        },
+      ],
+    },
+
+    // ============================================================
+    // الدرس الثاني: مدارات الأقمار الاصطناعية وقوانين كبلر
+    //
+    // Transcribed verbatim from pages 9–10 of the source PDF, section 1-4.
+    // This subsection of the book presents only the three laws and the
+    // Newton's-gravitation reminder box — no worked example and no
+    // exercise/MCQ exists for it anywhere in the chapter's question bank
+    // (page 19–20 only cover circular motion and rotational dynamics).
+    // Consistent with the Golden Lesson's no-fabrication standard, this
+    // lesson therefore has no quiz/exercise blocks: inventing one here
+    // would mean inventing an exercise question the source never asked.
+    // ============================================================
+    {
+      id: "c1-l2",
+      title: "مدارات الأقمار الاصطناعية وقوانين كبلر",
+      duration: "٢٥ دقيقة",
+      kind: "interactive",
+      blocks: [
+        {
+          id: "c1-l2-hero-image",
+          type: "image",
+          src: asset("satellite-orbit.jpg"),
+          alt: "قمر صناعي في مداره حول الأرض",
+          caption: "الشكل ١-٤: قمر اصطناعي يمثل الحركة الدائرية.",
+        },
+        {
+          id: "c1-l2-intro",
+          type: "concept",
+          title: "قوانين كبلر",
+          body: "تخضع حركة الاقمار الاصطناعية حول الكرة الارضية الى قوانين كبلر والتي تحدد حركة الكواكب السيارة وحركة النجوم في المجرات وهي كما يلي:",
+        },
+
+        {
+          id: "c1-l2-sec-law1",
+          type: "section",
+          title: "القانون الأول (قانون المسارات)",
+          blocks: [
+            {
+              id: "c1-l2-def-law1",
+              type: "definition",
+              term: "قانون كبلر الأول (قانون المسارات)",
+              definition: "تتحرك الكواكب (أو الأقمار) في مسارات بيضوية حول مركز جذبها الذي يقع عند أحد البؤرتين.",
+            },
+            {
+              id: "c1-l2-fig-1-5",
+              type: "customDiagram",
+              title: "الشكل ١-٥: قانون كبلر الأول",
+              diagramId: "fig-1-4-keplers-first-law",
+              caption: "المسار البيضوي لكوكب أو قمر: مركز الجذب (بؤرة ٢) لا يقع في مركز الشكل بل عند إحدى بؤرتَيه، والسرعة v تبقى مماسّة للمسار عند كل نقطة P.",
+            },
+            {
+              id: "c1-l2-note-gravity-center",
+              type: "note",
+              title: "ملاحظة",
+              body: "تُعدّ الشمس مركز الجذب في حالة دوران كواكب المجموعة الشمسية حولها، وتُعد الأرض مركز الجذب في حالة دوران الأقمار الاصطناعية حولها.",
+            },
+          ],
+        },
+
+        {
+          id: "c1-l2-sec-law2",
+          type: "section",
+          title: "القانون الثاني (قانون المساحات)",
+          blocks: [
+            {
+              id: "c1-l2-def-law2",
+              type: "definition",
+              term: "قانون كبلر الثاني (قانون المساحات)",
+              definition: "يمسح الخط الواصل بين مركز الجذب والكوكب (أو القمر) مساحات متساوية في أزمان متساوية.",
+            },
+            {
+              id: "c1-l2-fig-1-6",
+              type: "customDiagram",
+              title: "الشكل ١-٦: قانون كبلر الثاني",
+              diagramId: "fig-1-5-keplers-second-law",
+              caption: "عند الاقتراب من مركز الجذب يتحرك الجسم أسرع فيمسح قطاعاً أعرض (A₁) في مسافة أقصر، وعند الابتعاد يتحرك أبطأ فيمسح قطاعاً أضيق (A₂) في مسافة أطول، بحيث تتساوى المساحتان في الزمن نفسه Δt.",
+            },
+          ],
+        },
+
+        {
+          id: "c1-l2-sec-law3",
+          type: "section",
+          title: "القانون الثالث (قانون التناسب)",
+          blocks: [
+            {
+              id: "c1-l2-def-law3",
+              type: "definition",
+              term: "قانون كبلر الثالث (قانون التناسب)",
+              definition: "يتناسب مربع الزمن الدوري لحركة الكواكب (أو القمر) طردياً مع مكعب نصف القطر الكبير لمساره.",
+            },
+            {
+              id: "c1-l2-formula-law3",
+              type: "formula",
+              label: "قانون كبلر الثالث",
+              latex: "t^2 \\propto r^3",
+              caption: "إذ إن t الزمن الدوري، وr نصف القطر الكبير للمسار.",
+            },
+            {
+              id: "c1-l2-hint-proportional",
+              type: "hint",
+              body: "الرمز ∝ يعني «يتناسب طردياً مع» وليس علامة مساواة مباشرة — فمضاعفة r تعني مضاعفة r³ في الطرف الآخر، لا r نفسها.",
+            },
+          ],
+        },
+
+        {
+          id: "c1-l2-note-newton-gravitation",
+          type: "note",
+          title: "تذكر",
+          body: "أن أي كتلتين في الكون تجذب إحداهما الأخرى بقوة تتناسب طردياً مع حاصل ضرب الكتلتين (M,m) وعكسياً مع مربع المسافة بينهما (r)، وهذا ما يُطلق عليه قانون الجذب العام لنيوتن.",
+        },
+        {
+          id: "c1-l2-formula-newton-gravitation",
+          type: "formula",
+          label: "قانون الجذب العام لنيوتن",
+          latex: "F_G = G\\dfrac{Mm}{r^2}",
+          caption: "حيث G ثابت الجذب العام، ومقداره: G = 6.67×10⁻¹¹ N·m²/kg².",
+        },
+        {
+          id: "c1-l2-teachertip-gravitation",
+          type: "teacherTip",
+          body: "تنويه للمعلّم: يقدَّم قانون الجذب العام لنيوتن هنا كخلفية فيزيائية تفسّر سبب صحة قانون كبلر الثالث (تناسب مربع الزمن الدوري مع مكعب نصف القطر)، دون الخوض في اشتقاق العلاقة بينهما في هذه المرحلة — يكفي أن يدرك الطالب أن القانونين يصفان القوة الجاذبة نفسها من زاويتين مختلفتين.",
+        },
+
+        {
+          id: "c1-l2-summary",
+          type: "summary",
+          title: "خلاصة الدرس",
+          points: [
+            "تخضع حركة الكواكب والأقمار (الطبيعية والاصطناعية) لقوانين كبلر الثلاثة.",
+            "القانون الأول (قانون المسارات): المسار بيضوي، ومركز الجذب يقع عند إحدى بؤرتَي القطع الناقص لا في مركزه.",
+            "القانون الثاني (قانون المساحات): الخط الواصل بين مركز الجذب والجسم الدائر يمسح مساحات متساوية في أزمان متساوية — أي أن الجسم يتحرك أسرع قرب مركز الجذب وأبطأ بعيداً عنه.",
+            "القانون الثالث (قانون التناسب): مربع الزمن الدوري يتناسب طردياً مع مكعب نصف القطر الكبير للمسار: t² ∝ r³.",
+            "قانون الجذب العام لنيوتن Fᴳ = G Mm/r² يفسّر فيزيائياً القوة التي تجعل هذه المسارات ممكنة أصلاً.",
+          ],
+        },
+        {
+          id: "c1-l2-glossary",
+          type: "glossary",
+          title: "قاموس المصطلحات",
+          terms: [
+            { term: "قانون كبلر الأول (قانون المسارات)", definition: "تتحرك الكواكب أو الأقمار في مسارات بيضوية حول مركز جذب يقع عند إحدى بؤرتَي المسار." },
+            { term: "قانون كبلر الثاني (قانون المساحات)", definition: "الخط الواصل بين مركز الجذب والجسم الدائر يمسح مساحات متساوية في أزمان متساوية." },
+            { term: "قانون كبلر الثالث (قانون التناسب)", definition: "مربع الزمن الدوري لمسار الجسم يتناسب طردياً مع مكعب نصف قطره الكبير: t² ∝ r³." },
+            { term: "ثابت الجذب العام (G)", definition: "ثابت في قانون الجذب العام لنيوتن، ومقداره 6.67×10⁻¹¹ N·m²/kg²." },
+          ],
+        },
+        {
+          id: "c1-l2-references",
+          type: "references",
+          title: "المصادر",
+          items: [{ label: "كتاب الطبيعيات — الفصل الأول: مدارات الأقمار الاصطناعية وقوانين كبلر (١-٤)" }],
+        },
+        {
+          id: "c1-l2-ai-tutor",
+          type: "aiTutor",
+          greeting: "هل تحتاج مساعدة في فهم الفرق بين قوانين كبلر الثلاثة، أو العلاقة بينها وبين قانون الجذب العام لنيوتن؟ اسألني!",
+          suggestions: [
+            "لماذا يتحرك الكوكب أسرع قرب الشمس؟",
+            "ما العلاقة بين قانون كبلر الثالث وقانون الجذب العام؟",
+            "أين تقع الشمس بالضبط في مدار الأرض؟",
           ],
         },
       ],

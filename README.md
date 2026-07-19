@@ -166,13 +166,34 @@ What it demonstrates end to end:
 Every future lesson should match this one in structure, card usage,
 diagram quality, and interactivity before being considered done.
 
+## Lesson Two
+
+`c1-l2` — "مدارات الأقمار الاصطناعية وقوانين كبلر" — covers section ١-٤
+of Chapter One, transcribed verbatim from pages 9–10 of the same source
+PDF: the three laws of Kepler (paths, areas, periods) and the Newton's
+universal gravitation reminder box that follows them.
+
+Two more bespoke diagrams were built for it, following the same
+`customDiagram` pattern as Lesson One: an elliptical-orbit diagram with
+two foci for Kepler's first law, and an equal-areas diagram (a wide,
+short wedge near the gravity center vs. a thin, long wedge far from it)
+for the second law — plus a real cropped satellite photo from the source
+PDF.
+
+This lesson has **no quiz or exercise blocks**, by design: the source's
+question bank (pages 19–20) has no MCQ, worked example, or exercise for
+Kepler's laws anywhere in it. Rather than invent one to match Lesson
+One's shape, this lesson simply omits it — the no-fabrication standard
+takes priority over structural symmetry between lessons.
+
 ## Status
 
-Foundation, content engine, and the Golden Lesson are complete and
-verified: tokens, theme engine, layout primitives, the full component
-library, a data-driven rendering pipeline for every content block type,
-and one fully real, richly interactive physics lesson — checked at
-desktop/tablet/mobile widths, in light and dark mode, for RTL
-correctness, overflow, and working interactivity (show-solution, quiz
-answers, diagram zoom). Next step: Lesson Two, matching this lesson's
-bar for quality.
+Foundation, content engine, and two fully real lessons of Chapter One are
+complete and verified: tokens, theme engine, layout primitives, the full
+component library, a data-driven rendering pipeline for every content
+block type, and now 5 bespoke interactive physics diagrams across both
+lessons — all checked at desktop/tablet/mobile widths, in light and dark
+mode, for RTL correctness, overflow, and working interactivity
+(show-solution, quiz answers, diagram zoom, prev/next lesson
+navigation). Next step: Lesson Three, matching the Golden Lesson's bar
+for quality.
