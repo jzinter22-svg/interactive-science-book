@@ -58,6 +58,11 @@
   color: var(--status-danger);
 }
 
+.badgeQuaternary {
+  background: var(--accent-quaternary-soft);
+  color: var(--accent-quaternary);
+}
+
 .title {
   font-size: var(--fs-section-title);
   font-weight: var(--fw-bold);

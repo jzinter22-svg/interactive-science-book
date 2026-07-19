@@ -5,10 +5,11 @@ import { ChapterCard } from "../components/cards/ChapterCard";
 import { Button } from "../components/ui/Button";
 import { ProgressBar } from "../components/ui/ProgressBar";
 import { useTheme } from "../theme/ThemeContext";
-import { demoChapters } from "../data/demoContent";
+import { getAllChapters } from "../content/registry";
 import styles from "./HomePage.module.css";
 
-const totalLessons = demoChapters.reduce((sum, c) => sum + c.lessons.length, 0);
+const chapters = getAllChapters();
+const totalLessons = chapters.reduce((sum, c) => sum + c.lessons.length, 0);
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export function HomePage() {
         primaryAction={{ label: "استعرض الفصول", onClick: () => navigate("/chapter/c1") }}
         secondaryAction={{ label: "تبديل السمة", onClick: toggleTheme }}
         stats={[
-          { value: String(demoChapters.length), label: "وحدات" },
+          { value: String(chapters.length), label: "وحدات" },
           { value: String(totalLessons), label: "دروس" },
           { value: "٢", label: "وضع سمة" },
           { value: "AA", label: "توافق إتاحة" },
@@ -40,14 +41,14 @@ export function HomePage() {
               <div className={`glass-surface ${styles.continueCard}`}>
                 <div className={styles.continueTopRow}>
                   <div className={styles.continueMeta}>
-                    <span className={styles.continueChapterLabel}>{demoChapters[0].title}</span>
-                    <h3 className={styles.continueLessonTitle}>{demoChapters[0].lessons[2].title}</h3>
+                    <span className={styles.continueChapterLabel}>{chapters[0].title}</span>
+                    <h3 className={styles.continueLessonTitle}>{chapters[0].lessons[2].title}</h3>
                   </div>
-                  <Button onClick={() => navigate(`/lesson/${demoChapters[0].lessons[2].id}`)}>متابعة</Button>
+                  <Button onClick={() => navigate(`/lesson/${chapters[0].lessons[2].id}`)}>متابعة</Button>
                 </div>
                 <div className={styles.continueProgressRow}>
                   <div className={styles.continueProgressBar}>
-                    <ProgressBar value={demoChapters[0].progress} label="تقدّم الوحدة الحالية" />
+                    <ProgressBar value={chapters[0].progress} label="تقدّم الوحدة الحالية" />
                   </div>
                 </div>
               </div>
@@ -61,7 +62,7 @@ export function HomePage() {
                 <p className={styles.assistantText}>
                   اسأل عن أي فكرة لم تتضح لك أثناء القراءة، متاح داخل كل درس.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => navigate(`/lesson/${demoChapters[0].lessons[0].id}`)}>
+                <Button variant="outline" size="sm" onClick={() => navigate(`/lesson/${chapters[0].lessons[0].id}`)}>
                   افتح المساعد
                 </Button>
               </div>
@@ -75,7 +76,7 @@ export function HomePage() {
             <span className={styles.sectionCaption}>بيانات تجريبية — سيتم استبدالها بالمحتوى الفعلي لاحقًا</span>
           </div>
           <div className="auto-grid">
-            {demoChapters.map((chapter, i) => (
+            {chapters.map((chapter, i) => (
               <ChapterCard
                 key={chapter.id}
                 index={chapter.index}

@@ -7,14 +7,16 @@ interface Message {
   text: string;
 }
 
-const initialMessages: Message[] = [
-  { role: "assistant", text: "أهلًا! أنا مساعدك الذكي، اسألني عن أي فكرة لم تتضح لك في الدرس." },
-];
+const defaultGreeting = "أهلًا! أنا مساعدك الذكي، اسألني عن أي فكرة لم تتضح لك في الدرس.";
+const defaultSuggestions = ["اشرح هذا المفهوم بطريقة أبسط", "أعطني مثالاً إضافياً", "اختبرني في هذا الموضوع"];
 
-const suggestions = ["اشرح هذا المفهوم بطريقة أبسط", "أعطني مثالاً إضافياً", "اختبرني في هذا الموضوع"];
+interface AIAssistantCardProps {
+  greeting?: string;
+  suggestions?: string[];
+}
 
-export function AIAssistantCard() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
+export function AIAssistantCard({ greeting = defaultGreeting, suggestions = defaultSuggestions }: AIAssistantCardProps = {}) {
+  const [messages, setMessages] = useState<Message[]>([{ role: "assistant", text: greeting }]);
   const [draft, setDraft] = useState("");
 
   const send = (text: string) => {

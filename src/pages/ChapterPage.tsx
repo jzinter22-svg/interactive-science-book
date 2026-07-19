@@ -4,13 +4,13 @@ import { Breadcrumb } from "../components/ui/Breadcrumb";
 import { LessonCard } from "../components/cards/LessonCard";
 import { ProgressBar } from "../components/ui/ProgressBar";
 import { Button } from "../components/ui/Button";
-import { findChapter } from "../data/demoContent";
+import { getChapterById } from "../content/registry";
 import styles from "./ChapterPage.module.css";
 
 export function ChapterPage() {
   const { chapterId } = useParams();
   const navigate = useNavigate();
-  const chapter = findChapter(chapterId);
+  const chapter = getChapterById(chapterId);
   const nextLesson = chapter.lessons.find((l) => !l.completed) ?? chapter.lessons[0];
 
   return (

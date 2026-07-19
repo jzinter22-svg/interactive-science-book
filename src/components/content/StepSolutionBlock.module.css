@@ -1,0 +1,52 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.step {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.number {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body-sm);
+}
+
+.text {
+  flex: 1;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+  color: var(--text-secondary);
+  padding-block-start: 2px;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--status-success-soft);
+}
+
+.answerText {
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  overflow-wrap: break-word;
+}

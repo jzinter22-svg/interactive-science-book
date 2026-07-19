@@ -7,9 +7,10 @@ interface QuestionCardProps {
   question: string;
   options: string[];
   correctIndex?: number;
+  explanation?: string;
 }
 
-export function QuestionCard({ index, question, options, correctIndex }: QuestionCardProps) {
+export function QuestionCard({ index, question, options, correctIndex, explanation }: QuestionCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
@@ -40,6 +41,7 @@ export function QuestionCard({ index, question, options, correctIndex }: Questio
           );
         })}
       </div>
+      {selected !== null && explanation && <p className={styles.explanation}>{explanation}</p>}
     </article>
   );
 }

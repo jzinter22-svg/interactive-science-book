@@ -37,25 +37,7 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-}
-
-.intro {
-  color: var(--text-secondary);
-}
-
-.sectionDivider {
-  border-block-start: 1px solid var(--glass-border-soft);
-  padding-block-start: var(--space-2);
-}
-
-.checkTitle {
-  font-size: var(--fs-section-title);
-  font-weight: var(--fw-bold);
-  color: var(--text-primary);
-  margin-block-end: var(--space-5);
+  margin-block-end: var(--space-7);
 }
 
 .navRow {

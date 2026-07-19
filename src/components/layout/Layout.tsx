@@ -1,8 +1,8 @@
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { AppShell } from "./AppShell";
-import { sidebarSectionsFromChapters } from "../../data/demoContent";
+import { getSidebarNavSections } from "../../content/registry";
 
-const sidebarSections = sidebarSectionsFromChapters();
+const sidebarSections = getSidebarNavSections();
 
 export function Layout() {
   const location = useLocation();
