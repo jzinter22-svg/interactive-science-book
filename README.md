@@ -234,9 +234,60 @@ Kepler's laws anywhere in it. Rather than invent one to match Lesson
 One's shape, this lesson simply omits it — the no-fabrication standard
 takes priority over structural symmetry between lessons.
 
+## Content policy: every image becomes an interaction
+
+This is a standing rule for **all** content in this book, not just what's
+built so far — it governs Lesson Three onward and any future chapter.
+
+**Every educational image must contribute to learning through
+interaction, animation, simulation, or exploration.** Whenever it's
+technically possible to rebuild a static textbook figure as something a
+student can manipulate, do that instead of embedding the picture. A
+static image is only acceptable when recreating the figure would reduce
+scientific accuracy (e.g. a genuine photograph being cited as a primary
+source, or an apparatus too specific/rare to model faithfully).
+
+What that means per subject, when future lessons reach these topics:
+
+- **Physics** (circular motion, projectiles, motion graphs, vectors,
+  electricity, magnetism, waves, optics): drag objects, move sliders,
+  play/pause/reset, change variables, watch the effect immediately —
+  never a static force diagram alone.
+- **Astronomy** (solar system, Earth, Moon, eclipses, seasons, orbits):
+  orbital motion and self-rotation together, at legible (not
+  necessarily literal-scale) relative speeds, with zoom, labels,
+  tooltips, and glow.
+- **Chemistry** (atoms, molecules, ionic/covalent/metallic bonds,
+  crystal structures): rotatable molecules, inspectable atoms,
+  drag-to-bond interactions, visible bond angles.
+- **Laboratory equipment** (centrifuge, microscope, balance, beakers,
+  flasks, test tubes, electrical apparatus): pressable buttons,
+  turnable knobs, openable lids, an animated "run the experiment," not
+  a photo of the device.
+- **Biology** (heart, lungs, digestive system, cells): animate the
+  actual process — blood flow, breathing, food movement, cell
+  division — not just a labeled static cross-section.
+
+Every interactive figure should still teach: clickable labels, hover/tap
+explanations with Arabic tooltips, and — where it makes sense — both a
+guided walkthrough and free exploration. Motion stays smooth,
+professional, and subtle; never flashy or distracting. Every simulation
+must: run on `React + SVG` (`Canvas` only if a subject genuinely needs
+pixel-level rendering `SVG` can't do reasonably), pause when scrolled
+off-screen (`IntersectionObserver`) and when the browser tab is hidden
+(Page Visibility API), respect `prefers-reduced-motion` by freezing
+rather than autoplaying, work equally on desktop/tablet/mobile and
+mouse/touch input, and be built from small reusable components (a shared
+animation-frame hook, a shared pause/visibility hook, one component per
+moving part) rather than one monolithic file per lesson. And nothing
+about the simulation — the motion, the vectors, the labels, the
+equations — may depict physics or science the source didn't actually
+teach; interactivity is never a license to invent.
+
 ## Interactive simulations — "a virtual laboratory, not a scanned textbook"
 
-Every static photo of an apparatus, vehicle, or orbit across both
+Lessons One and Two are already fully compliant with the policy above —
+every static photo of an apparatus, vehicle, or orbit across both
 lessons has been replaced with a fully interactive SVG simulation
 (`interactiveSim` block type, `src/components/simulations/`):
 
