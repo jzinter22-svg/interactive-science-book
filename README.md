@@ -255,16 +255,35 @@ lessons has been replaced with a fully interactive SVG simulation
   slides — using the standard banked-curve-with-friction formula, an
   honest extension of Example 2's flat-curve case and the source's own
   banked-road note, not an invented result.
+- **Solar System simulation** (`src/components/simulations/solar-system/`)
+  — replaces Lesson One's static solar-system photo entirely. All 8
+  planets orbit the Sun at their own angular velocity (Mercury fastest
+  through Neptune slowest — never uniform), Earth spins on its own axis
+  while the Moon orbits it and both revolve around the Sun together, the
+  Sun pulses with a soft glow and a slowly-rotating corona, orbit paths
+  glow with an animated marching-dash stroke, and a quiet twinkling star
+  field fills the background. Every body (Sun, 8 planets, Moon) is
+  hoverable, tappable, and keyboard-focusable, showing its Arabic name
+  and a one-line educational fact via a pure-SVG `Tooltip` that shares
+  the scene's own coordinate system — built from reusable
+  `Planet`/`Orbit`/`Moon`/`Stars`/`Tooltip` components, not one
+  monolithic file.
 
-All four share `SimShell` (play/pause/reset toolbar, canvas, controls,
-live-value readouts) and two hooks: `useRafLoop` (a
-`requestAnimationFrame` loop — the browser's native 60fps animation
-timer — reporting delta-time between frames, capped at 50ms so a tab
-returning from the background can't cause a huge simulation jump) and
-`useInViewport` (`IntersectionObserver`-based), which **automatically
-pauses every simulation's physics loop the instant it scrolls out of the
+All simulations share two hooks: `useRafLoop` (a `requestAnimationFrame`
+loop — the browser's native 60fps animation timer — reporting delta-time
+between frames, capped at 50ms so a tab returning from the background
+can't cause a huge simulation jump) and `useInViewport`
+(`IntersectionObserver`-based), which **automatically pauses every
+simulation's physics loop the instant it scrolls out of the
 viewport** — confirmed by scrolling a running simulation away and back
-and observing its state hadn't advanced while off-screen.
+and observing its state hadn't advanced while off-screen. The four
+physics labs additionally share `SimShell` (play/pause/reset toolbar,
+canvas, controls, live-value readouts); the Solar System has its own
+lighter toolbar (no sliders/readouts needed) plus two more hooks —
+`useDocumentVisible` (Page Visibility API, pauses when the browser tab
+itself is hidden) and `usePrefersReducedMotion` — since under reduced
+motion it freezes in place rather than just pausing on request, while
+staying fully hoverable/tappable for its educational content.
 
 ## Guided Solutions — worked examples for a student with zero prior knowledge
 

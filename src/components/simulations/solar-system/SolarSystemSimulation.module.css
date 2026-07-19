@@ -1,0 +1,216 @@
+.wrap {
+  border-radius: var(--radius-lg);
+  padding: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--glass-border-soft);
+}
+
+.title {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.playButton {
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary-soft);
+  color: var(--accent-primary);
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+
+.playButton:hover {
+  background: var(--color-indigo-100);
+}
+
+.reducedMotionNote {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+
+.canvasWrap {
+  background: radial-gradient(120% 100% at 50% 30%, #131836 0%, #0a0d1f 70%, #060812 100%);
+  padding: var(--space-4);
+  display: flex;
+  justify-content: center;
+}
+
+.svg {
+  inline-size: 100%;
+  max-inline-size: 34rem;
+  block-size: auto;
+  display: block;
+  font-family: var(--font-family-base);
+}
+
+/* ---------- stars ---------- */
+
+.star {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* ---------- orbits ---------- */
+
+.orbit {
+  stroke: #6b7bd6;
+  stroke-opacity: 0.35;
+  stroke-width: 1.1;
+  stroke-dasharray: 2 7;
+  filter: drop-shadow(0 0 2.5px rgba(107, 123, 214, 0.55));
+  animation: orbit-dash 40s linear infinite;
+}
+
+@keyframes orbit-dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* ---------- sun ---------- */
+
+.sunGlow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-pulse 4.5s ease-in-out infinite;
+}
+
+.sunCorona {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: corona-spin 22s linear infinite;
+}
+
+.sunGroup {
+  cursor: pointer;
+}
+
+@keyframes sun-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.4;
+  }
+}
+
+@keyframes corona-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- planets ---------- */
+
+.planetGroup {
+  cursor: pointer;
+}
+
+.planetGroup:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+.planetBody {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--dur-fast) var(--ease-standard), filter var(--dur-fast) var(--ease-standard);
+}
+
+.planetGroup[data-active="true"] .planetBody {
+  transform: scale(1.4);
+  filter: drop-shadow(0 0 5px var(--accent-primary));
+}
+
+.planetRing {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.planetSpin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: earth-spin-shade 3s linear infinite;
+}
+
+@keyframes earth-spin-shade {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- tooltip ---------- */
+
+.tooltip {
+  pointer-events: none;
+}
+
+.tooltipBg {
+  fill: var(--bg-surface);
+  stroke: var(--glass-border-soft);
+  stroke-width: 1;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+.tooltipName {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+
+.tooltipDesc {
+  font-size: 10.5px;
+  fill: var(--text-secondary);
+}
+
+/* ---------- pause everything together ---------- */
+
+.wrap[data-running="false"] .star,
+.wrap[data-running="false"] .orbit,
+.wrap[data-running="false"] .sunGlow,
+.wrap[data-running="false"] .sunCorona,
+.wrap[data-running="false"] .planetSpin {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .orbit,
+  .sunGlow,
+  .sunCorona,
+  .planetSpin {
+    animation: none;
+  }
+}

@@ -21,8 +21,6 @@
 
 import type { Chapter } from "../types";
 
-const asset = (path: string) => `${import.meta.env.BASE_URL}lesson-assets/${path}`;
-
 export const chapter1: Chapter = {
   id: "c1",
   index: 1,
@@ -38,12 +36,12 @@ export const chapter1: Chapter = {
       kind: "interactive",
       blocks: [
         {
-          id: "c1-l1-hero-image",
-          type: "image",
-          src: asset("solar-system.jpg"),
-          alt: "صورة توضيحية للمجموعة الشمسية ومدارات الكواكب حول الشمس",
+          id: "c1-l1-hero-sim",
+          type: "interactiveSim",
+          title: "محاكاة تفاعلية: المجموعة الشمسية",
+          simId: "solar-system-lab",
           caption:
-            "من أبرز الأمثلة الطبيعية على الحركة الدائرية: دوران الكواكب حول الشمس ضمن مدارات دائرية أو شبه دائرية.",
+            "من أبرز الأمثلة الطبيعية على الحركة الدائرية: دوران الكواكب حول الشمس ضمن مدارات دائرية أو شبه دائرية، كل كوكب بسرعته الزاوية الخاصة — مرّر مؤشرك أو اضغط على أي جرم لتتعرّف عليه.",
         },
 
         // ------------------------------------------------------
