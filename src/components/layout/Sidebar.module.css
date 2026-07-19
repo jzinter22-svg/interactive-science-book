@@ -19,13 +19,8 @@
 }
 
 .sidebar {
-  position: fixed;
-  inset-block: 0;
-  inset-inline-start: 0;
   z-index: var(--z-sidebar);
   inline-size: min(20rem, 85vw);
-  transform: translateX(-100%);
-  transition: transform var(--dur-slow) var(--ease-decelerate);
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur)) saturate(140%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
@@ -34,13 +29,26 @@
   padding: var(--space-6) var(--space-4);
 }
 
-html[dir="rtl"] .sidebar {
-  transform: translateX(100%);
-}
+/* Off-canvas drawer — mobile/tablet only. All transform/position rules
+   for the closed & open drawer states are scoped below 1024px so they
+   can never leak into (or fight with) the desktop sticky layout. */
+@media (max-width: 1023.98px) {
+  .sidebar {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    transform: translateX(-100%);
+    transition: transform var(--dur-slow) var(--ease-decelerate);
+  }
 
-.sidebar[data-open="true"],
-html[dir="rtl"] .sidebar[data-open="true"] {
-  transform: translateX(0);
+  html[dir="rtl"] .sidebar {
+    transform: translateX(100%);
+  }
+
+  .sidebar[data-open="true"],
+  html[dir="rtl"] .sidebar[data-open="true"] {
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -48,8 +56,6 @@ html[dir="rtl"] .sidebar[data-open="true"] {
     position: sticky;
     inset-block-start: 4.25rem;
     block-size: calc(100vh - 4.25rem);
-    transform: none;
-    border-inline-end: 1px solid var(--glass-border-soft);
     background: var(--glass-bg-subtle);
     backdrop-filter: blur(var(--blur-md));
   }

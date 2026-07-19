@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Container } from "./Container";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { Button } from "../ui/Button";
@@ -10,10 +10,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "الرئيسية", href: "#home" },
-  { label: "الفصول", href: "#chapters" },
-  { label: "التمارين", href: "#exercises" },
-  { label: "المساعد الذكي", href: "#assistant" },
+  { label: "الرئيسية", href: "/" },
+  { label: "الفصول", href: "/chapter/c1" },
+  { label: "الدروس", href: "/lesson/c1-l1" },
+  { label: "معرض المكوّنات", href: "/design-system" },
 ];
 
 interface HeaderProps {
@@ -22,7 +22,7 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuToggle, menuOpen }: HeaderProps) {
-  const [activeHref, setActiveHref] = useState(navLinks[0].href);
+  const location = useLocation();
 
   return (
     <header className={styles.header}>
@@ -37,25 +37,24 @@ export function Header({ onMenuToggle, menuOpen }: HeaderProps) {
           <span className={styles.menuIcon} data-open={menuOpen} />
         </button>
 
-        <a href="#home" className={styles.brand}>
+        <Link to="/" className={styles.brand}>
           <span className={styles.brandMark} aria-hidden="true">
             <BookIcon />
           </span>
           <span className={styles.brandText}>منصة العلوم التفاعلية</span>
-        </a>
+        </Link>
 
         <nav className={styles.nav} aria-label="التنقل الرئيسي">
           <ul className={styles.navList}>
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className={styles.navLink}
-                  data-active={activeHref === link.href}
-                  onClick={() => setActiveHref(link.href)}
+                  data-active={location.pathname === link.href}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

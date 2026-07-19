@@ -74,6 +74,12 @@
   .bento-grid > .span-6 {
     grid-column: span 6;
   }
+  .bento-grid > .span-8,
+  .bento-grid > .span-9 {
+    /* clamp to the full 6-column tablet grid — these spans only make
+       sense relative to the 12-column desktop grid */
+    grid-column: span 6;
+  }
 }
 
 @media (min-width: 1024px) {

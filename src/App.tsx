@@ -1,32 +1,22 @@
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./theme/ThemeContext";
-import { AppShell } from "./components/layout/AppShell";
+import { Layout } from "./components/layout/Layout";
+import { HomePage } from "./pages/HomePage";
+import { ChapterPage } from "./pages/ChapterPage";
+import { LessonPage } from "./pages/LessonPage";
 import { ShowcasePage } from "./pages/ShowcasePage";
-import type { SidebarSection } from "./components/layout/Sidebar";
-
-const sidebarSections: SidebarSection[] = [
-  {
-    id: "gallery",
-    title: "معرض المكوّنات",
-    items: [
-      { id: "hero", label: "الترويسة الرئيسية" },
-      { id: "chapters", label: "بطاقات الفصول" },
-      { id: "lessons", label: "بطاقات الدروس" },
-      { id: "content-cards", label: "بطاقات المحتوى" },
-      { id: "media", label: "الوسائط" },
-      { id: "diagram", label: "الرسم التفاعلي" },
-      { id: "quiz", label: "الاختبار التفاعلي" },
-      { id: "assistant", label: "المساعد الذكي" },
-      { id: "interaction", label: "عناصر تفاعلية" },
-    ],
-  },
-];
 
 function App() {
   return (
     <ThemeProvider>
-      <AppShell sidebarSections={sidebarSections} activeItemId="hero">
-        <ShowcasePage />
-      </AppShell>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/chapter/:chapterId" element={<ChapterPage />} />
+          <Route path="/lesson/:lessonId" element={<LessonPage />} />
+          <Route path="/design-system" element={<ShowcasePage />} />
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 }

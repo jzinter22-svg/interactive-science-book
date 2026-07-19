@@ -1,5 +1,5 @@
 .footer {
-  margin-block-start: var(--space-12);
+  margin-block-start: var(--space-9);
   border-block-start: 1px solid var(--glass-border-soft);
   background: var(--glass-bg-subtle);
   padding-block: var(--space-9);

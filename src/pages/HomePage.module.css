@@ -1,0 +1,100 @@
+.section {
+  padding-block: var(--space-8);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.sectionCaption {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+
+.continueCard {
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  justify-content: space-between;
+  min-block-size: 100%;
+}
+
+.continueTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.continueMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.continueChapterLabel {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+  font-weight: var(--fw-semibold);
+}
+
+.continueLessonTitle {
+  font-size: var(--fs-lesson-title);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.continueProgressRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.continueProgressBar {
+  flex: 1;
+}
+
+.assistantTeaser {
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-block-size: 100%;
+}
+
+.assistantIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-amber-300), var(--color-indigo-400));
+  color: #fff;
+}
+
+.assistantTitle {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.assistantText {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-relaxed);
+  flex: 1;
+}

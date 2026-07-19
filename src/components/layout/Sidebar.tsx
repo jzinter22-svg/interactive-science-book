@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
 export interface SidebarSection {
   id: string;
   title: string;
-  items: { id: string; label: string; progress?: number }[];
+  items: { id: string; label: string; progress?: number; href?: string }[];
 }
 
 interface SidebarProps {
@@ -23,21 +24,31 @@ export function Sidebar({ sections, activeItemId, open, onClose }: SidebarProps)
             <div className={styles.section} key={section.id}>
               <h3 className={styles.sectionTitle}>{section.title}</h3>
               <ul className={styles.itemList}>
-                {section.items.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={`#${item.id}`}
-                      className={styles.item}
-                      data-active={item.id === activeItemId}
-                    >
-                      <span className={styles.itemDot} data-active={item.id === activeItemId} />
+                {section.items.map((item) => {
+                  const isActive = item.id === activeItemId;
+                  const content = (
+                    <>
+                      <span className={styles.itemDot} data-active={isActive} />
                       <span className={styles.itemLabel}>{item.label}</span>
                       {typeof item.progress === "number" && (
                         <span className={styles.itemProgress}>{item.progress}%</span>
                       )}
-                    </a>
-                  </li>
-                ))}
+                    </>
+                  );
+                  return (
+                    <li key={item.id}>
+                      {item.href ? (
+                        <Link to={item.href} className={styles.item} data-active={isActive} onClick={onClose}>
+                          {content}
+                        </Link>
+                      ) : (
+                        <a href={`#${item.id}`} className={styles.item} data-active={isActive}>
+                          {content}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
