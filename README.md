@@ -336,6 +336,78 @@ itself is hidden) and `usePrefersReducedMotion` — since under reduced
 motion it freezes in place rather than just pausing on request, while
 staying fully hoverable/tappable for its educational content.
 
+### Concept-demo figures (`src/components/simulations/concept-demos/`)
+
+Beyond the apparatus/vehicle/orbit photos above, five smaller in-lesson
+diagrams (Figures 1-1 through 1-3 in Lesson One, 1-4 and 1-5 in Lesson
+Two) were originally rebuilt as bespoke *static* SVGs — accurate and
+labeled, but not actually interactive. Per the "every image becomes an
+interaction" policy, each was reviewed individually and rebuilt again
+with the specific interaction that teaches *its own* concept best,
+deliberately not the same treatment five times over:
+
+- **Figure 1-1** (`VectorDirectionDemo`) — the body auto-orbits or can
+  be dragged to any point on the circle directly; v and aᴄ stay
+  correctly tangent/radial from wherever it's placed, teaching that
+  their directions never depend on position.
+- **Figure 1-2** (`AccelerationComposerDemo`) — two independent sliders
+  (aᵀ, aᴄ magnitude) with a live vector-sum parallelogram, teaching
+  vector composition by letting the student build it themselves rather
+  than read one fixed drawing.
+- **Figure 1-3** (`CentripetalForceDemo`) — a single speed slider; Fᴄ's
+  vector length and a live N-value both scale with the *square* of
+  speed, isolating exactly the one relationship the formula asserts.
+- **Figure 1-4** (`KeplerOrbitDemo`) — an eccentricity slider reshapes a
+  true focus-based ellipse (`orbitMath.ts`) live, with the occupied
+  focus fixed on screen so only the far side visibly stretches out —
+  teaching that the gravitating body sits at a focus, not the center.
+- **Figure 1-5** (`KeplerAreaSweepDemo`) — reuses the same accurate
+  orbit math to sweep one wedge continuously over a fixed time window
+  instead of showing two static wedges side by side, so the width
+  visibly widens near the focus and narrows far from it in real time.
+
+Figures 1-4 and 1-5 share `orbitMath.ts`: a true-anomaly, focus-based
+ellipse parametrization where the angular rate is set to exactly
+∝ 1/r² — the literal statement of Kepler's second law, not an
+approximation — so both demos move consistently with each other and
+with the physics actually being taught. All five share a lighter
+`ConceptDemoShell` (title bar with an optional play/pause/reset, canvas,
+optional sliders, optional one-line hint) rather than the heavier
+`SimShell` built for the four full labs, since a single-slider or
+drag-only demo doesn't need a controls/readouts grid designed for
+multi-variable exploration — another instance of not reaching for the
+same component just because it already existed.
+
+## Every figure in Lessons One and Two — upgrade checklist
+
+Lessons One and Two are the project's Golden Standard: every
+educational image in both has been individually reviewed and, unless
+recreating it would have reduced scientific accuracy, rebuilt as a real
+interactive component. Nothing static remains.
+
+| # | Figure | Lesson | Was | Now |
+|---|--------|--------|-----|-----|
+| 1 | Figure 1-1 — اتجاها v وaᴄ | One | bespoke static SVG | `VectorDirectionDemo` — drag/auto-orbit, live tangent + radial vectors |
+| 2 | Figure 1-2 — محصلة التعجيل | One | bespoke static SVG | `AccelerationComposerDemo` — two-slider live vector composition |
+| 3 | Figure 1-3 — القوة المركزية | One | bespoke static SVG | `CentripetalForceDemo` — speed slider, quadratic force scaling |
+| 4 | Centrifuge (هل تعلم؟) | One | cropped textbook photo | `CentrifugeLab` — RPM + sample-mass sliders, start/stop, live aᴄ/Fᴄ |
+| 5 | Circular-motion / car-cornering illustration | One | cropped textbook photo | `CircularMotionLab` — drag + radius/ω/mass sliders, live v/aᴄ/Fᴄ |
+| 6 | Banked-road force diagram | One | cropped textbook photo | `BankedRoadLab` — angle/speed/friction sliders, live force decomposition + safe/slide status |
+| 7 | Solar-system intro image | One | stock/cropped photo | `SolarSystemSimulation` — 8 planets at individual angular velocities, Earth+Moon, pulsing Sun, hoverable tooltips |
+| 8 | Example 1 (satellite aᴄ) worked solution | One | example + step list | `guidedSolution` — 8-step zero-prior-knowledge format |
+| 9 | Example 2 (car cornering speed) worked solution | One | example + step list | `guidedSolution` — 8-step zero-prior-knowledge format |
+| 10 | Satellite-orbit hero image | Two | cropped textbook photo | `SatelliteMotionLab` — orbit trail, adjustable radius/speed/mass |
+| 11 | Figure (Kepler's first law, ellipse) | Two | bespoke static SVG | `KeplerOrbitDemo` — eccentricity slider + drag, true focus-based ellipse |
+| 12 | Figure (Kepler's second law, equal areas) | Two | bespoke static SVG | `KeplerAreaSweepDemo` — live sweeping wedge over a fixed Δt |
+
+Rows 4-10 were completed in earlier rounds of this same standard; rows
+1-3, 11-12 are this round's work. Every row shares the same
+non-negotiables: pauses off-screen (`useInViewport`) and, where
+continuous motion exists, respects `prefers-reduced-motion`; every
+number, vector, and label is physically accurate to what the source
+teaches — none of it was invented to make the interaction more
+impressive.
+
 ## Guided Solutions — worked examples for a student with zero prior knowledge
 
 The `guidedSolution` block type (`GuidedSolutionBlock.tsx`) replaces the
