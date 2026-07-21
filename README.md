@@ -408,29 +408,37 @@ number, vector, and label is physically accurate to what the source
 teaches — none of it was invented to make the interaction more
 impressive.
 
-## Guided Solutions — worked examples for a student with zero prior knowledge
+## Guided Solutions — worked examples for a very weak student
 
 The `guidedSolution` block type (`GuidedSolutionBlock.tsx`) replaces the
 old example+step-solution pairing for every fully worked numeric problem.
-Every one follows the same eight-step sequence, never jumping straight
-to a calculation:
+Every one follows the same eight-step sequence, and the prose around the
+math is kept to one short sentence per section on purpose — for a
+student with zero prior knowledge, the math itself needs to occupy more
+visual space than any explanation of it:
 
-1. Restate the problem in simple Arabic.
-2. List every given quantity separately (المعطيات).
-3. State what's actually being asked for (المطلوب).
-4. Show the equation, and explain *why* it's the right one for this
-   question — not just assert it.
-5. Explain every unit conversion before performing it (e.g. "the radius
-   is in km but the equation needs SI units, so we convert to meters
-   first, by multiplying by 1000").
-6. One arithmetic operation per line — never two steps folded into one.
-7. The final answer, highlighted in its own box.
-8. A "خطأ شائع" (Common Mistake) box naming the single most frequent
-   student error for that specific problem.
+1. Restate the problem — one short sentence.
+2. List every given quantity separately (المعطيات), each its own chip.
+3. State what's asked for (المطلوب) — one short sentence.
+4. Show the equation, with one short clause on why it applies.
+5. Explain each unit conversion in one short clause before performing it.
+6. **Each solving step is its own card**, separated by a divider: a short
+   instruction line ("نربّع السرعة:") followed by its equations — formula,
+   substitution, result — each on its own centered, KaTeX-rendered line.
+   Never a sentence with the arithmetic folded into it (never "نقسم
+   الناتج على نصف القطر: aᴄ = 132,059 ÷ 5,000,000" as one line — the
+   instruction and the equation are always visually separate).
+7. The final answer as one large, centered, highlighted KaTeX expression
+   in its own green box, with an optional one-line note underneath (e.g.
+   what the unit means).
+8. A "خطأ شائع" (Common Mistake) box — one short sentence naming the
+   single most frequent student error for that specific problem.
 
 Both of Lesson One's worked examples (the satellite's centripetal
-acceleration, and the car's maximum safe cornering speed) are rewritten
-this way.
+acceleration, and the car's maximum safe cornering speed), and the short
+prose explanations behind its three "علّل" exercises, are written this
+way — the reader should never have to parse a paragraph to find the one
+number that matters.
 
 ## Status
 

@@ -65,9 +65,22 @@ export interface GivenQuantity {
 }
 
 export interface UnitConversionStep {
-  /** Why this conversion is needed, stated before it happens — e.g. "بما أن القانون يتطلب وحدات النظام الدولي، نحوّل الكيلومترات إلى أمتار أولاً." */
+  /** One short clause — why this conversion is needed, stated before it happens. */
   explanation: string;
   result: string;
+}
+
+export interface GuidedStep {
+  /** One short instruction, e.g. "نربّع السرعة:" — never contains the equation itself. */
+  instruction: string;
+  /** The math for this step, one expression per line (formula → substitution → result), each rendered centered. */
+  equations: string[];
+}
+
+export interface GuidedFinalAnswer {
+  latex: string;
+  /** Optional short caption under the answer, e.g. what the unit means. */
+  note?: string;
 }
 
 // ------------------------------------------------------------
@@ -116,12 +129,15 @@ export interface StepSolutionBlockData extends BaseBlock, StepSolutionData {
 }
 
 /**
- * A worked example rebuilt for a student with no prior knowledge: never
- * jump straight to calculation. Restate the problem, list every given
- * quantity separately, name what's required, explain *why* the chosen
- * equation applies, explain every unit conversion before performing it,
- * show one operation per line, highlight the final answer, and flag the
- * most common mistake.
+ * A worked example rebuilt for a very weak student with no prior
+ * knowledge: never jump straight to calculation. Restate the problem in
+ * one short sentence, list every given quantity separately, name what's
+ * required, explain *why* the chosen equation applies (briefly), explain
+ * every unit conversion before performing it, then show the math itself
+ * as its own sequence of short steps — each step its own card, each
+ * equation on its own centered line, never folded into a sentence.
+ * Explanatory text throughout stays as short as possible; the math is
+ * the point, not the prose around it.
  */
 export interface GuidedSolutionBlockData extends BaseBlock {
   type: "guidedSolution";
@@ -131,9 +147,8 @@ export interface GuidedSolutionBlockData extends BaseBlock {
   required: string;
   equation: { latex: string; reasoning: string };
   conversions?: UnitConversionStep[];
-  /** One arithmetic operation per entry. */
-  steps: string[];
-  finalAnswer: string;
+  steps: GuidedStep[];
+  finalAnswer: GuidedFinalAnswer;
   commonMistake: string;
 }
 

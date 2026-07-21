@@ -1,6 +1,6 @@
 import shared from "../cards/shared.module.css";
 import { MathFormula } from "../math/MathFormula";
-import type { GivenQuantity, UnitConversionStep } from "../../content/types";
+import type { GivenQuantity, UnitConversionStep, GuidedStep, GuidedFinalAnswer } from "../../content/types";
 import styles from "./GuidedSolutionBlock.module.css";
 
 interface GuidedSolutionBlockProps {
@@ -10,17 +10,17 @@ interface GuidedSolutionBlockProps {
   required: string;
   equation: { latex: string; reasoning: string };
   conversions?: UnitConversionStep[];
-  steps: string[];
-  finalAnswer: string;
+  steps: GuidedStep[];
+  finalAnswer: GuidedFinalAnswer;
   commonMistake: string;
 }
 
 /**
- * A worked example for a student with zero prior knowledge: restate,
- * list givens, name what's required, justify the equation, explain
- * every unit conversion before it happens, one operation per line, a
- * highlighted final answer, and a common-mistake warning. See
- * src/content/types.ts (GuidedSolutionBlockData) for the contract.
+ * A worked example for a very weak student: short prose, the math does
+ * the talking. Each step is its own card with a one-line instruction
+ * and its equations centered underneath — never a sentence with the
+ * arithmetic folded into it. See src/content/types.ts
+ * (GuidedSolutionBlockData) for the contract.
  */
 export function GuidedSolutionBlock({
   title,
@@ -40,7 +40,7 @@ export function GuidedSolutionBlock({
         <h4 className={styles.title}>{title}</h4>
       </div>
 
-      <Section number={1} heading="إعادة صياغة السؤال ببساطة">
+      <Section number={1} heading="السؤال ببساطة">
         <p className={styles.body}>{restatement}</p>
       </Section>
 
@@ -59,7 +59,7 @@ export function GuidedSolutionBlock({
         <p className={styles.body}>{required}</p>
       </Section>
 
-      <Section number={4} heading="القانون المستخدم ولماذا">
+      <Section number={4} heading="القانون">
         <div className={styles.equationBox}>
           <MathFormula expression={equation.latex} display className={styles.equationFormula} />
         </div>
@@ -79,14 +79,21 @@ export function GuidedSolutionBlock({
         </Section>
       )}
 
-      <Section number={conversions?.length ? 6 : 5} heading="خطوات الحل (خطوة واحدة في كل مرة)">
+      <Section number={conversions?.length ? 6 : 5} heading="خطوات الحل">
         <ol className={styles.stepsList}>
           {steps.map((step, i) => (
-            <li className={styles.step} key={i}>
-              <span className={styles.stepNumber} aria-hidden="true">
-                {i + 1}
-              </span>
-              <p className={styles.stepText}>{step}</p>
+            <li className={styles.stepCard} key={i}>
+              <div className={styles.stepInstruction}>
+                <span className={styles.stepNumber} aria-hidden="true">
+                  {i + 1}
+                </span>
+                {step.instruction}
+              </div>
+              <div className={styles.stepEquations}>
+                {step.equations.map((eq, j) => (
+                  <MathFormula key={j} expression={eq} display className={styles.stepEquation} />
+                ))}
+              </div>
             </li>
           ))}
         </ol>
@@ -94,7 +101,8 @@ export function GuidedSolutionBlock({
 
       <div className={styles.answerBox}>
         <span className={`${shared.badge} ${shared.badgeSuccess}`}>الإجابة النهائية</span>
-        <p className={styles.answerText}>{finalAnswer}</p>
+        <MathFormula expression={finalAnswer.latex} display className={styles.answerFormula} />
+        {finalAnswer.note && <p className={styles.answerNote}>{finalAnswer.note}</p>}
       </div>
 
       <div className={styles.mistakeBox}>
