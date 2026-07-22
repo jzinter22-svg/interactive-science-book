@@ -13,8 +13,9 @@
 
 import type { Chapter, Lesson } from "./types";
 import { chapter1 } from "./chapters/c1";
+import { chapter2 } from "./chapters/c2";
 
-const chapters: Chapter[] = [chapter1];
+const chapters: Chapter[] = [chapter1, chapter2];
 
 export function getAllChapters(): Chapter[] {
   return chapters;
@@ -37,6 +38,18 @@ export function getLessonById(id: string | undefined): LessonLookup {
     if (index !== -1) return { chapter, lesson: chapter.lessons[index], index };
   }
   return { chapter: chapters[0], lesson: chapters[0].lessons[0], index: 0 };
+}
+
+/**
+ * Prev/next lesson across the *entire book*, not just the current
+ * chapter — so finishing a chapter's last lesson naturally continues
+ * into the next chapter's first lesson instead of dead-ending.
+ */
+export function getAdjacentLessons(id: string | undefined): { prev?: Lesson; next?: Lesson } {
+  const flat = chapters.flatMap((c) => c.lessons);
+  const index = flat.findIndex((l) => l.id === id);
+  if (index === -1) return {};
+  return { prev: flat[index - 1], next: flat[index + 1] };
 }
 
 export interface SidebarNavSection {

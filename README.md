@@ -270,6 +270,48 @@ is aimed at. The same `table` block also renders the linear/rotational
 quantity-correspondence table (١-١) and the linear/rotational uniform-
 acceleration kinematics table.
 
+## Chapter Two, Lesson Four
+
+`c2-l1` — "التداخل وتجربة يونك" — opens **Chapter Two** ("الفصل الثاني:
+التداخل والاستقطاب والحيود والاستطارة", the wave-optics chapter),
+transcribed verbatim from pages 21–25, sections ٢-١ through ٢-٤:
+the chapter introduction, interference and its two conditions
+(constructive/destructive), coherence and its sources, and Young's
+double-slit experiment with its fringe-spacing formula and one fully
+worked example. As with Chapter One, this is deliberately not the whole
+chapter — sections ٢-٥ through ٢-١٠ (thin-film interference, diffraction,
+the combined interference/diffraction phenomenon, polarization,
+scattering, and the remaining chapter quiz/problems) are left for a
+follow-up lesson rather than force-fit into one.
+
+Three new interactive figures replace the chapter's static diagrams —
+see the simulations section below for detail: `WaveSuperpositionDemo`
+(Figure 2-1, the four hand-drawn wave sketches), `TwoSourceInterferenceDemo`
+(Figure 2-2, the two-speaker coherent-source diagram), and
+`YoungsDoubleSlitDemo`, which combines Figures 2-3, 2-4, and 2-5 (the
+apparatus photo and its two ray-diagram redraws) into one simulation
+rather than building three separate demos of the same apparatus.
+
+Its two MCQs (crest-meets-crest constructive interference; the
+constructive-interference path-difference condition) and two numeric
+problems (finding λ from fringe spacing; finding the slit separation a)
+are exactly the chapter-question-bank items that test this lesson's own
+material — page 33's other nine MCQs and page 34's other exercise/problem
+items test thin-film, diffraction, polarization, or scattering, and are
+reserved for the lesson that actually teaches them. One numeric problem's
+printed distance ("6 m") produces an answer inconsistent with the book's
+own printed answer key (1.296 mm) unless read as "0.6 m" — the same kind
+of decimal-shift misprint already caught and silently corrected in
+Lesson Three's motor-power problem, corrected the same way here rather
+than reproducing an internally-inconsistent worked example.
+
+Since Chapter Two now exists, `getAdjacentLessons` (`src/content/
+registry.ts`) replaced the old per-chapter `chapter.lessons[index ± 1]`
+prev/next logic in `LessonPage.tsx`: it flattens every chapter's lessons
+into one ordered list first, so finishing Chapter One's last lesson
+continues straight into Chapter Two's first lesson instead of dead-ending
+on a disabled "next" button.
+
 ## Content policy: every image becomes an interaction
 
 This is a standing rule for **all** content in this book, not just what's
@@ -441,10 +483,36 @@ All four reuse the same `ConceptDemoShell` and `useRafLoop`/
 `useInViewport` hooks as Lessons One and Two's concept demos — no new
 shared infrastructure was needed.
 
-## Every figure in Lessons One, Two, and Three — upgrade checklist
+Chapter Two, Lesson Four adds three more for its wave-optics figures:
 
-Lessons One, Two, and Three are the project's Golden Standard: every
-educational image in all three has been individually reviewed and,
+- **Figure 2-1** (`WaveSuperpositionDemo`) — a path-difference slider (in
+  units of λ) sets the relative phase between two traveling waves; the
+  resultant A+B redraws live, doubling in amplitude at Δℓ = 0, λ, 2λ...
+  and vanishing at Δℓ = λ/2, 3λ/2..., exactly the two conditions the
+  source text states.
+- **Figure 2-2** (`TwoSourceInterferenceDemo`) — two coherent point
+  sources emit expanding concentric wavefronts one wavelength apart (the
+  classic ripple-tank picture); drag the listener dot anywhere in the
+  overlap region to read the actual path difference and see whether it
+  lands on a constructive (loud) or destructive (quiet) spot.
+- **Figures 2-3/2-4/2-5** (`YoungsDoubleSlitDemo`) — one simulation
+  standing in for all three related redraws of the same apparatus: slit
+  separation a, screen distance D, and wavelength λ are all independent
+  sliders, and the fringe pattern on the screen — including its color —
+  recomputes live from the real X = λD/a relationship. Wavelength-to-color
+  conversion uses a small public-domain approximation (`wavelengthColor.ts`)
+  so the fringe color genuinely shifts across the visible spectrum as λ
+  changes, not just its spacing.
+
+All three also reuse the existing `ConceptDemoShell`/`SimSlider`/
+`useRafLoop`/`useInViewport` infrastructure — the only new shared piece
+is the wavelength-to-color helper, which is a pure function, not a
+component.
+
+## Every figure in Lessons One through Four — upgrade checklist
+
+Lessons One through Four are the project's Golden Standard: every
+educational image in all four has been individually reviewed and,
 unless recreating it would have reduced scientific accuracy, rebuilt as
 a real interactive component. Nothing static remains.
 
@@ -466,14 +534,17 @@ a real interactive component. Nothing static remains.
 | 14 | Figure 1-8 — قاعدة اليد اليمنى | Three | photo of a hand | `AngularVelocityDemo` — signed ω slider flips rotation direction and the ω arrow together |
 | 15 | مشغل الأقراص المرنة CD/DVD (هل تعلم؟) | Three | cropped textbook photo | `ConstantLinearVelocityDemo` — read-radius slider, live ω to hold vₜ constant |
 | 16 | التعجيل الزاوي (§1-5-3) | Three | none (text only) | `AngularAccelerationDemo` — signed α slider, live vₜ/aₜ tangent vectors |
+| 17 | Figure 2-1 — التداخل (four superposition sketches) | Four | bespoke static SVG | `WaveSuperpositionDemo` — path-difference slider, live constructive/destructive resultant |
+| 18 | Figure 2-2 — مصدران للصوت | Four | bespoke static SVG | `TwoSourceInterferenceDemo` — expanding coherent wavefronts, draggable listener point |
+| 19 | Figures 2-3/2-4/2-5 — جهاز ونموذج تجربة يونك | Four | apparatus photo + 2 ray diagrams | `YoungsDoubleSlitDemo` — a/D/λ sliders, live fringe pattern with wavelength-accurate color |
 
 Rows 4-10 were completed in earlier rounds of this same standard; rows
-1-3, 11-12 the round after; rows 13-16 are this round's work. Every row
-shares the same non-negotiables: pauses off-screen (`useInViewport`)
-and, where continuous motion exists, respects `prefers-reduced-motion`;
-every number, vector, and label is physically accurate to what the
-source teaches — none of it was invented to make the interaction more
-impressive.
+1-3, 11-12 the round after; rows 13-16 the round after that; rows 17-19
+are this round's work. Every row shares the same non-negotiables: pauses
+off-screen (`useInViewport`) and, where continuous motion exists,
+respects `prefers-reduced-motion`; every number, vector, and label is
+physically accurate to what the source teaches — none of it was
+invented to make the interaction more impressive.
 
 ## Guided Solutions — worked examples for a very weak student
 
@@ -514,10 +585,10 @@ book, not only the ones the source itself calls "مثال".
 
 ## Gold Standard — the binding template for every remaining lesson
 
-**Lessons One, Two, and Three are approved.** Every lesson from Lesson
-Four onward — for the rest of Chapter One and every chapter after it —
-is built to match them exactly. This is not a style preference to
-reconsider per lesson; it's the fixed contract:
+**Lessons One through Four are approved.** Every lesson from here on —
+for the rest of Chapter Two and every chapter after it — is built to
+match them exactly. This is not a style preference to reconsider per
+lesson; it's the fixed contract:
 
 - Same layout and component structure — a lesson is `blocks:
   ContentBlock[]` rendered through `ContentBlockList`; a new lesson is a
@@ -558,24 +629,26 @@ reconsider per lesson; it's the fixed contract:
 
 Design decisions within this contract (which existing component fits a
 new figure, how a lesson's sections nest, wording of a hint) are made
-without stopping to ask — the same way Lessons One, Two, and Three were
+without stopping to ask — the same way Lessons One through Four were
 built. Only a genuine scientific ambiguity in the source material
 (unclear scope boundary, an apparent inconsistency, a fact that needs
 verification) is worth pausing for.
 
 ## Status
 
-Foundation, content engine, and three fully real lessons of Chapter One
-are complete and verified: tokens, theme engine, layout primitives, the
-full component library, a data-driven rendering pipeline for every
-content block type (including the new generic `table` block), 4 full
-interactive simulations, 9 concept-demo interactives (5 from Lessons
-One/Two, 4 new in Lesson Three) replacing every static or photographic
-figure across all three lessons, and 12 worked examples/practice
-problems rebuilt as zero-prior-knowledge Guided Solutions — all checked
-at desktop/tablet/mobile widths, in light and dark mode, for RTL
-correctness, overflow, and working interactivity (drag, sliders,
-play/pause/reset, off-screen pausing, show-solution, quiz answers,
-table wrapping, prev/next lesson navigation). **Lessons One, Two, and
-Three are approved as the Gold Standard** (see above) — every remaining
-lesson is built to match. Next step: Lesson Four (or Chapter Two).
+Foundation, content engine, all of Chapter One (three lessons), and
+Chapter Two's opening lesson are complete and verified: tokens, theme
+engine, layout primitives, the full component library, a data-driven
+rendering pipeline for every content block type (including the generic
+`table` block), 4 full interactive simulations, 12 concept-demo
+interactives (5 from Lessons One/Two, 4 from Lesson Three, 3 from Lesson
+Four) replacing every static or photographic figure across all four
+lessons, and 15 worked examples/practice problems rebuilt as
+zero-prior-knowledge Guided Solutions — all checked at desktop/tablet/
+mobile widths, in light and dark mode, for RTL correctness, overflow,
+and working interactivity (drag, sliders, play/pause/reset, off-screen
+pausing, show-solution, quiz answers, table wrapping, cross-chapter
+prev/next lesson navigation). **Lessons One through Four are approved
+as the Gold Standard** (see above) — every remaining lesson is built to
+match. Next step: Chapter Two's second lesson (thin-film interference,
+diffraction, polarization, and scattering).

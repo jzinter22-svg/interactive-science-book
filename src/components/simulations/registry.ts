@@ -13,6 +13,9 @@ import { AngularDisplacementDemo } from "./concept-demos/AngularDisplacementDemo
 import { AngularVelocityDemo } from "./concept-demos/AngularVelocityDemo";
 import { ConstantLinearVelocityDemo } from "./concept-demos/ConstantLinearVelocityDemo";
 import { AngularAccelerationDemo } from "./concept-demos/AngularAccelerationDemo";
+import { WaveSuperpositionDemo } from "./concept-demos/WaveSuperpositionDemo";
+import { TwoSourceInterferenceDemo } from "./concept-demos/TwoSourceInterferenceDemo";
+import { YoungsDoubleSlitDemo } from "./concept-demos/YoungsDoubleSlitDemo";
 
 /** simId → interactive simulation component. Looked up by InteractiveSimBlockData. */
 export const simulationRegistry: Record<string, () => ReactElement> = {
@@ -30,4 +33,7 @@ export const simulationRegistry: Record<string, () => ReactElement> = {
   "angular-velocity-demo": AngularVelocityDemo,
   "constant-linear-velocity-demo": ConstantLinearVelocityDemo,
   "angular-acceleration-demo": AngularAccelerationDemo,
+  "wave-superposition-demo": WaveSuperpositionDemo,
+  "two-source-interference-demo": TwoSourceInterferenceDemo,
+  "youngs-double-slit-demo": YoungsDoubleSlitDemo,
 };

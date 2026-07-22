@@ -6,7 +6,7 @@ import { Button } from "../components/ui/Button";
 import { EmptyState } from "../components/ui/EmptyState";
 import { ContentBlockList } from "../components/content/BlockRenderer";
 import shared from "../components/cards/shared.module.css";
-import { getLessonById } from "../content/registry";
+import { getLessonById, getAdjacentLessons } from "../content/registry";
 import styles from "./LessonPage.module.css";
 
 const kindLabel: Record<string, string> = {
@@ -20,9 +20,7 @@ export function LessonPage() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const { chapter, lesson, index } = getLessonById(lessonId);
-
-  const prevLesson = chapter.lessons[index - 1];
-  const nextLesson = chapter.lessons[index + 1];
+  const { prev: prevLesson, next: nextLesson } = getAdjacentLessons(lessonId);
 
   return (
     <Container size="reading">
