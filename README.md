@@ -440,6 +440,50 @@ prose explanations behind its three "علّل" exercises, are written this
 way — the reader should never have to parse a paragraph to find the one
 number that matters.
 
+## Gold Standard — the binding template for every remaining lesson
+
+**Lessons One and Two are approved.** Every lesson from Lesson Three
+onward — for the rest of Chapter One and every chapter after it — is
+built to match them exactly. This is not a style preference to
+reconsider per lesson; it's the fixed contract:
+
+- Same layout and component structure — a lesson is `blocks:
+  ContentBlock[]` rendered through `ContentBlockList`; a new lesson is a
+  new data file wired into the registry, never a new page or a
+  one-off layout.
+- Same design language, typography, spacing, color, and motion —
+  everything comes from `src/styles/tokens.css` and the existing
+  glass-surface utilities. No new visual system, no new component
+  family, unless a genuinely new kind of content demands one — and even
+  then it's built to blend in (see `ConceptDemoShell` vs. `SimShell`:
+  two shells, one shared visual language).
+- The "every image becomes an interaction" policy applies without
+  exception — see above. A static figure is only acceptable when
+  recreating it would reduce scientific accuracy.
+- Worked examples keep the same eight-step Guided Solution format (see
+  below) for a reader with zero prior knowledge, every time.
+- Reuse existing components and hooks first (`useRafLoop`,
+  `useInViewport`, `useDocumentVisible`, `usePrefersReducedMotion`,
+  `SimShell`/`ConceptDemoShell`, `DiagramDefs`/`VectorLabel`,
+  `MathFormula`). Only build something new for a genuinely new
+  interaction an existing piece can't already express.
+- RTL Arabic, accessibility (keyboard focus, `aria-label`s, reduced
+  motion, off-screen pausing), and responsiveness at
+  desktop/tablet/mobile are non-negotiable for every new piece, not a
+  follow-up pass.
+- No fabricated content, ever: every definition, law, formula, example,
+  and exercise traces back to `books/كتاب الطبيعيات.pdf`; a lesson
+  simply omits a section (quiz, exercises, a given block type) rather
+  than invent material the source doesn't have, exactly as Lesson Two
+  omitted its quiz.
+
+Design decisions within this contract (which existing component fits a
+new figure, how a lesson's sections nest, wording of a hint) are made
+without stopping to ask — the same way Lessons One and Two were built.
+Only a genuine scientific ambiguity in the source material (unclear
+scope boundary, an apparent inconsistency, a fact that needs
+verification) is worth pausing for.
+
 ## Status
 
 Foundation, content engine, and two fully real lessons of Chapter One are
@@ -451,5 +495,6 @@ off-screen), and 2 worked examples rebuilt as zero-prior-knowledge Guided
 Solutions — all checked at desktop/tablet/mobile widths, in light and
 dark mode, for RTL correctness, overflow, and working interactivity
 (drag, sliders, play/pause/reset, off-screen pausing, show-solution, quiz
-answers, diagram zoom, prev/next lesson navigation). Next step: Lesson
-Three, matching this same bar for quality.
+answers, diagram zoom, prev/next lesson navigation). **Lessons One and
+Two are approved as the Gold Standard** (see above) — every remaining
+lesson is built to match. Next step: Lesson Three.
