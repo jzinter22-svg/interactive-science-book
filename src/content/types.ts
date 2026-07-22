@@ -88,6 +88,9 @@ export interface GuidedFinalAnswer {
   note?: string;
 }
 
+/** A table cell: plain Arabic text, or a KaTeX expression rendered through MathFormula. */
+export type TableCell = string | { latex: string };
+
 // ------------------------------------------------------------
 // Content blocks — one interface per reusable content type.
 // Every block carries `id` (stable React key + future deep-linking)
@@ -155,6 +158,20 @@ export interface GuidedSolutionBlockData extends BaseBlock {
   steps: GuidedStep[];
   finalAnswer: GuidedFinalAnswer;
   commonMistake: string;
+}
+
+/**
+ * A generic data table — column headers plus rows of cells, each cell
+ * either plain text or a KaTeX formula. For reference tables a lesson's
+ * prose can't reasonably replace (e.g. moment-of-inertia formulas per
+ * shape, unit-conversion factors), not a substitute for prose explanation.
+ */
+export interface TableBlockData extends BaseBlock {
+  type: "table";
+  title?: string;
+  columns: string[];
+  rows: TableCell[][];
+  caption?: string;
 }
 
 export interface ExerciseBlockData extends BaseBlock {
@@ -305,6 +322,7 @@ export type ContentBlock =
   | ExampleBlockData
   | StepSolutionBlockData
   | GuidedSolutionBlockData
+  | TableBlockData
   | ExerciseBlockData
   | MCQBlockData
   | TrueFalseBlockData

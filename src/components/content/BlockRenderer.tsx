@@ -7,6 +7,7 @@ import { DefinitionBlock } from "./DefinitionBlock";
 import { ConceptBlock } from "./ConceptBlock";
 import { StepSolutionBlock } from "./StepSolutionBlock";
 import { GuidedSolutionBlock } from "./GuidedSolutionBlock";
+import { TableBlock } from "./TableBlock";
 import { TrueFalseBlock } from "./TrueFalseBlock";
 import { FillBlankBlock } from "./FillBlankBlock";
 import { AnimationBlock } from "./AnimationBlock";
@@ -108,6 +109,9 @@ export function ContentBlockRenderer({ block, activityNumber }: ContentBlockRend
           commonMistake={block.commonMistake}
         />
       );
+
+    case "table":
+      return <TableBlock title={block.title} columns={block.columns} rows={block.rows} caption={block.caption} />;
 
     case "exercise":
       return <ExerciseBlockRenderer block={block} number={activityNumber ?? 1} />;

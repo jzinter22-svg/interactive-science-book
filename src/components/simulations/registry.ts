@@ -9,6 +9,10 @@ import { AccelerationComposerDemo } from "./concept-demos/AccelerationComposerDe
 import { CentripetalForceDemo } from "./concept-demos/CentripetalForceDemo";
 import { KeplerOrbitDemo } from "./concept-demos/KeplerOrbitDemo";
 import { KeplerAreaSweepDemo } from "./concept-demos/KeplerAreaSweepDemo";
+import { AngularDisplacementDemo } from "./concept-demos/AngularDisplacementDemo";
+import { AngularVelocityDemo } from "./concept-demos/AngularVelocityDemo";
+import { ConstantLinearVelocityDemo } from "./concept-demos/ConstantLinearVelocityDemo";
+import { AngularAccelerationDemo } from "./concept-demos/AngularAccelerationDemo";
 
 /** simId → interactive simulation component. Looked up by InteractiveSimBlockData. */
 export const simulationRegistry: Record<string, () => ReactElement> = {
@@ -22,4 +26,8 @@ export const simulationRegistry: Record<string, () => ReactElement> = {
   "centripetal-force-demo": CentripetalForceDemo,
   "kepler-orbit-demo": KeplerOrbitDemo,
   "kepler-area-sweep-demo": KeplerAreaSweepDemo,
+  "angular-displacement-demo": AngularDisplacementDemo,
+  "angular-velocity-demo": AngularVelocityDemo,
+  "constant-linear-velocity-demo": ConstantLinearVelocityDemo,
+  "angular-acceleration-demo": AngularAccelerationDemo,
 };

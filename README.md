@@ -234,6 +234,42 @@ Kepler's laws anywhere in it. Rather than invent one to match Lesson
 One's shape, this lesson simply omits it — the no-fabrication standard
 takes priority over structural symmetry between lessons.
 
+## Lesson Three
+
+`c1-l3` — "الحركة الدورانية: من الإزاحة الزاوية إلى الزخم الزاوي" —
+covers sections ١-٥ through ١-٨, transcribed verbatim from pages 10–20:
+angular displacement/velocity/acceleration, the uniform-angular-
+acceleration kinematics equations, moment of inertia, rotational
+energy/work/power, and angular momentum. This is the largest lesson yet
+(five worked Guided Solutions plus four end-of-chapter practice
+problems, also built as Guided Solutions for consistency), reflecting
+how much of Chapter One's remaining content the source packs into this
+one arc.
+
+Four new interactive figures replace what would otherwise be static
+diagrams or photos (see the simulations section below for detail):
+`AngularDisplacementDemo` (Figure 1-7), `AngularVelocityDemo` (Figure
+1-8, the right-hand rule), `ConstantLinearVelocityDemo` (the CD/DVD
+player "هل تعلم؟" box), and `AngularAccelerationDemo`.
+
+Its quiz (3 MCQs) and one exercise ("علّل" — why a diver curls their
+body, tied directly to angular-momentum conservation) are exactly the
+chapter-question-bank items Lessons One and Two hadn't already used;
+its four practice problems are the four end-of-chapter numeric problems
+Lesson One's first problem didn't already claim. Nothing here duplicates
+a question another lesson already answered, and nothing was invented
+that isn't already in the source's own question bank.
+
+The moment-of-inertia reference table (seven rigid-body shapes and their
+formulas) is built with a new generic `table` content block
+(`TableBlockData`/`TableBlock.tsx`) rather than a bespoke interactive
+diagram — deliberately, since it's a reference table of seven unrelated
+static formulas to look up, not one figure depicting a single animatable
+physical process the "every image becomes an interaction" policy below
+is aimed at. The same `table` block also renders the linear/rotational
+quantity-correspondence table (١-١) and the linear/rotational uniform-
+acceleration kinematics table.
+
 ## Content policy: every image becomes an interaction
 
 This is a standing rule for **all** content in this book, not just what's
@@ -286,9 +322,9 @@ teach; interactivity is never a license to invent.
 
 ## Interactive simulations — "a virtual laboratory, not a scanned textbook"
 
-Lessons One and Two are already fully compliant with the policy above —
-every static photo of an apparatus, vehicle, or orbit across both
-lessons has been replaced with a fully interactive SVG simulation
+Lessons One, Two, and Three are already fully compliant with the policy
+above — every static photo of an apparatus, vehicle, or orbit across all
+three lessons has been replaced with a fully interactive SVG simulation
 (`interactiveSim` block type, `src/components/simulations/`):
 
 - **Circular Motion Lab** — drag the orbiting body directly around its
@@ -370,7 +406,7 @@ Figures 1-4 and 1-5 share `orbitMath.ts`: a true-anomaly, focus-based
 ellipse parametrization where the angular rate is set to exactly
 ∝ 1/r² — the literal statement of Kepler's second law, not an
 approximation — so both demos move consistently with each other and
-with the physics actually being taught. All five share a lighter
+with the physics actually being taught. All share a lighter
 `ConceptDemoShell` (title bar with an optional play/pause/reset, canvas,
 optional sliders, optional one-line hint) rather than the heavier
 `SimShell` built for the four full labs, since a single-slider or
@@ -378,12 +414,39 @@ drag-only demo doesn't need a controls/readouts grid designed for
 multi-variable exploration — another instance of not reaching for the
 same component just because it already existed.
 
-## Every figure in Lessons One and Two — upgrade checklist
+Lesson Three added four more, one per rotational-kinematics figure it
+introduces:
 
-Lessons One and Two are the project's Golden Standard: every
-educational image in both has been individually reviewed and, unless
-recreating it would have reduced scientific accuracy, rebuilt as a real
-interactive component. Nothing static remains.
+- **Figure 1-7** (`AngularDisplacementDemo`) — drag point B around the
+  circle or resize r with a slider; the wedge angle θ and the arc S it
+  carves out both stay on screen with S = rθ recomputed live, including
+  when r changes for the same θ.
+- **Figure 1-8** (`AngularVelocityDemo`) — a signed ω slider (positive =
+  counter-clockwise, matching the same sign convention θ used on the
+  previous page): flipping the sign flips both the visible rotation
+  direction and the ω arrow up/down through the right-hand rule, while
+  vₜ = ωr stays tangent to the rim.
+- **The CD/DVD "هل تعلم؟" box** (`ConstantLinearVelocityDemo`) — a
+  slider drags the laser read-radius across a real CD's actual 2.2–5.8
+  cm track range; ω recomputes to hold vₜ = 1.2 m/s constant (a real
+  CD's linear read speed), showing concretely why the disc must spin
+  faster near the center.
+- **Angular acceleration** (`AngularAccelerationDemo`) — a signed α
+  slider speeds the disc up from rest or slows it down; the rim point's
+  vₜ (blue) and aₜ = αr (amber) are drawn as two separate tangent
+  vectors offset to each side of the point specifically so they don't
+  visually overlap and hide one another when they point the same way.
+
+All four reuse the same `ConceptDemoShell` and `useRafLoop`/
+`useInViewport` hooks as Lessons One and Two's concept demos — no new
+shared infrastructure was needed.
+
+## Every figure in Lessons One, Two, and Three — upgrade checklist
+
+Lessons One, Two, and Three are the project's Golden Standard: every
+educational image in all three has been individually reviewed and,
+unless recreating it would have reduced scientific accuracy, rebuilt as
+a real interactive component. Nothing static remains.
 
 | # | Figure | Lesson | Was | Now |
 |---|--------|--------|-----|-----|
@@ -399,13 +462,17 @@ interactive component. Nothing static remains.
 | 10 | Satellite-orbit hero image | Two | cropped textbook photo | `SatelliteMotionLab` — orbit trail, adjustable radius/speed/mass |
 | 11 | Figure (Kepler's first law, ellipse) | Two | bespoke static SVG | `KeplerOrbitDemo` — eccentricity slider + drag, true focus-based ellipse |
 | 12 | Figure (Kepler's second law, equal areas) | Two | bespoke static SVG | `KeplerAreaSweepDemo` — live sweeping wedge over a fixed Δt |
+| 13 | Figure 1-7 — حركة جسم على منحنى دائرة | Three | bespoke static SVG | `AngularDisplacementDemo` — drag + radius slider, live S = rθ |
+| 14 | Figure 1-8 — قاعدة اليد اليمنى | Three | photo of a hand | `AngularVelocityDemo` — signed ω slider flips rotation direction and the ω arrow together |
+| 15 | مشغل الأقراص المرنة CD/DVD (هل تعلم؟) | Three | cropped textbook photo | `ConstantLinearVelocityDemo` — read-radius slider, live ω to hold vₜ constant |
+| 16 | التعجيل الزاوي (§1-5-3) | Three | none (text only) | `AngularAccelerationDemo` — signed α slider, live vₜ/aₜ tangent vectors |
 
 Rows 4-10 were completed in earlier rounds of this same standard; rows
-1-3, 11-12 are this round's work. Every row shares the same
-non-negotiables: pauses off-screen (`useInViewport`) and, where
-continuous motion exists, respects `prefers-reduced-motion`; every
-number, vector, and label is physically accurate to what the source
-teaches — none of it was invented to make the interaction more
+1-3, 11-12 the round after; rows 13-16 are this round's work. Every row
+shares the same non-negotiables: pauses off-screen (`useInViewport`)
+and, where continuous motion exists, respects `prefers-reduced-motion`;
+every number, vector, and label is physically accurate to what the
+source teaches — none of it was invented to make the interaction more
 impressive.
 
 ## Guided Solutions — worked examples for a very weak student
@@ -438,13 +505,18 @@ Both of Lesson One's worked examples (the satellite's centripetal
 acceleration, and the car's maximum safe cornering speed), and the short
 prose explanations behind its three "علّل" exercises, are written this
 way — the reader should never have to parse a paragraph to find the one
-number that matters.
+number that matters. Lesson Three extends the same format to five new
+worked examples plus four end-of-chapter practice problems (labeled
+"مسألة" rather than "مثال" so the reader can tell a featured teaching
+example from a self-test problem) — the eight-step Guided Solution
+format is the standard for *every* fully worked numeric problem in this
+book, not only the ones the source itself calls "مثال".
 
 ## Gold Standard — the binding template for every remaining lesson
 
-**Lessons One and Two are approved.** Every lesson from Lesson Three
-onward — for the rest of Chapter One and every chapter after it — is
-built to match them exactly. This is not a style preference to
+**Lessons One, Two, and Three are approved.** Every lesson from Lesson
+Four onward — for the rest of Chapter One and every chapter after it —
+is built to match them exactly. This is not a style preference to
 reconsider per lesson; it's the fixed contract:
 
 - Same layout and component structure — a lesson is `blocks:
@@ -475,26 +547,35 @@ reconsider per lesson; it's the fixed contract:
   and exercise traces back to `books/كتاب الطبيعيات.pdf`; a lesson
   simply omits a section (quiz, exercises, a given block type) rather
   than invent material the source doesn't have, exactly as Lesson Two
-  omitted its quiz.
+  omitted its quiz. When a chapter shares one question bank across
+  several lessons (as Chapter One's quiz/problem pages do), each item is
+  used exactly once, in the lesson whose topic it actually tests — never
+  duplicated across lessons, never invented to fill a gap.
+- A new kind of reference content (a data table, a new list shape) gets
+  a new generic content-block type (see `table`/`TableBlockData`) only
+  when nothing existing already expresses it — the same restraint as
+  the simulation shells above, applied to the data model.
 
 Design decisions within this contract (which existing component fits a
 new figure, how a lesson's sections nest, wording of a hint) are made
-without stopping to ask — the same way Lessons One and Two were built.
-Only a genuine scientific ambiguity in the source material (unclear
-scope boundary, an apparent inconsistency, a fact that needs
+without stopping to ask — the same way Lessons One, Two, and Three were
+built. Only a genuine scientific ambiguity in the source material
+(unclear scope boundary, an apparent inconsistency, a fact that needs
 verification) is worth pausing for.
 
 ## Status
 
-Foundation, content engine, and two fully real lessons of Chapter One are
-complete and verified: tokens, theme engine, layout primitives, the full
-component library, a data-driven rendering pipeline for every content
-block type, 5 bespoke static physics diagrams, 4 full interactive
-simulations (drag, sliders, live vectors, play/pause/reset, auto-pause
-off-screen), and 2 worked examples rebuilt as zero-prior-knowledge Guided
-Solutions — all checked at desktop/tablet/mobile widths, in light and
-dark mode, for RTL correctness, overflow, and working interactivity
-(drag, sliders, play/pause/reset, off-screen pausing, show-solution, quiz
-answers, diagram zoom, prev/next lesson navigation). **Lessons One and
-Two are approved as the Gold Standard** (see above) — every remaining
-lesson is built to match. Next step: Lesson Three.
+Foundation, content engine, and three fully real lessons of Chapter One
+are complete and verified: tokens, theme engine, layout primitives, the
+full component library, a data-driven rendering pipeline for every
+content block type (including the new generic `table` block), 4 full
+interactive simulations, 9 concept-demo interactives (5 from Lessons
+One/Two, 4 new in Lesson Three) replacing every static or photographic
+figure across all three lessons, and 12 worked examples/practice
+problems rebuilt as zero-prior-knowledge Guided Solutions — all checked
+at desktop/tablet/mobile widths, in light and dark mode, for RTL
+correctness, overflow, and working interactivity (drag, sliders,
+play/pause/reset, off-screen pausing, show-solution, quiz answers,
+table wrapping, prev/next lesson navigation). **Lessons One, Two, and
+Three are approved as the Gold Standard** (see above) — every remaining
+lesson is built to match. Next step: Lesson Four (or Chapter Two).

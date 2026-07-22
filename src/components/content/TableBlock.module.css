@@ -1,0 +1,77 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  line-height: var(--lh-snug);
+}
+
+/* Tables can run wider than the card on small screens (many columns,
+   long formulas) — scroll the table itself rather than the page. */
+.scroller {
+  overflow-x: auto;
+  max-inline-size: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  inline-size: 100%;
+  table-layout: fixed;
+}
+
+.headCell {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  color: var(--text-tertiary);
+  background: var(--bg-surface-sunken);
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.headCell:first-child {
+  border-start-start-radius: var(--radius-md);
+  border-end-start-radius: var(--radius-md);
+}
+
+.headCell:last-child {
+  border-start-end-radius: var(--radius-md);
+  border-end-end-radius: var(--radius-md);
+}
+
+.row {
+  border-block-end: 1px dashed var(--glass-border-soft);
+}
+
+.row:last-child {
+  border-block-end: none;
+}
+
+.cell {
+  padding: var(--space-3);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  vertical-align: middle;
+  overflow-wrap: break-word;
+}
+
+.cellFormula {
+  direction: ltr;
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+  text-align: center;
+}
