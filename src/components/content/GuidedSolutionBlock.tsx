@@ -72,7 +72,18 @@ export function GuidedSolutionBlock({
             {conversions.map((c, i) => (
               <div className={styles.conversionItem} key={i}>
                 <p className={styles.body}>{c.explanation}</p>
-                <p className={styles.conversionResult}>{c.result}</p>
+                <div className={styles.conversionChain}>
+                  {c.equations.map((eq, j) => (
+                    <div className={styles.conversionLine} key={j}>
+                      {j > 0 && (
+                        <span className={styles.conversionArrow} aria-hidden="true">
+                          ↓
+                        </span>
+                      )}
+                      <MathFormula expression={eq} display className={styles.stepEquation} />
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

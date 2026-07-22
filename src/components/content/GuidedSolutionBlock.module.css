@@ -3,7 +3,14 @@
   padding: var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
+}
+
+/* KaTeX display mode ships with margin: 1em 0 — inside these compact
+   solution cards that reads as huge empty bands, so flatten it and let
+   the flex gaps below control all vertical rhythm instead. */
+.card :global(.katex-display) {
+  margin: 0;
 }
 
 .title {
@@ -100,17 +107,33 @@
 }
 
 .conversionItem {
-  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
   border-radius: var(--radius-md);
   background: var(--bg-surface-sunken);
 }
 
-.conversionResult {
-  margin-block-start: var(--space-1);
-  font-weight: var(--fw-bold);
-  color: var(--text-primary);
-  direction: ltr;
-  text-align: end;
+.conversionChain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.conversionLine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  max-inline-size: 100%;
+}
+
+.conversionArrow {
+  color: var(--text-tertiary);
+  font-size: var(--fs-body-sm);
+  line-height: 1;
 }
 
 /* ---------- the math itself: the visual centerpiece ---------- */
@@ -124,7 +147,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-4) var(--space-2);
+  padding: var(--space-3) var(--space-2);
   border-block-start: 1px dashed var(--glass-border-soft);
 }
 
@@ -159,8 +182,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  padding-inline-start: 2.1rem;
+  gap: var(--space-1);
 }
 
 .stepEquation {
@@ -177,7 +199,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-5) var(--space-4);
+  padding: var(--space-4);
   border-radius: var(--radius-md);
   background: var(--status-success-soft);
   text-align: center;

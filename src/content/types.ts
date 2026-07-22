@@ -67,7 +67,12 @@ export interface GivenQuantity {
 export interface UnitConversionStep {
   /** One short clause — why this conversion is needed, stated before it happens. */
   explanation: string;
-  result: string;
+  /**
+   * The conversion as a vertical chain of KaTeX lines, e.g.
+   * ["r = 5000\\ \\text{km}", "r = 5000 \\times 1000\\ \\text{m}", "r = 5{,}000{,}000\\ \\text{m}"].
+   * Each line renders centered through KaTeX — never as plain text.
+   */
+  equations: string[];
 }
 
 export interface GuidedStep {

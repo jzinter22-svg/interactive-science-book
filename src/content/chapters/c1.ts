@@ -143,7 +143,11 @@ export const chapter1: Chapter = {
                   conversions: [
                     {
                       explanation: "نحوّل r من km إلى m لأن القانون يحتاج وحدات SI.",
-                      result: "r = 5000 × 1000 = 5{,}000{,}000\\ \\text{m}",
+                      equations: [
+                        "r = 5000\\ \\text{km}",
+                        "r = 5000 \\times 1000\\ \\text{m}",
+                        "r = 5{,}000{,}000\\ \\text{m}",
+                      ],
                     },
                   ],
                   steps: [
